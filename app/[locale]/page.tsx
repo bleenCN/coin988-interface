@@ -1,11 +1,21 @@
-import { Greeting } from './greeting'
+import ADs from './ads'
+import Categorys from './categorys'
+import Search from './search'
 
 export default function Home() {
   return (
-    <div className="h-[200vh]">
-      <div className="flex min-h-[calc(100vh-64px)] items-center justify-center">
-        <Greeting />
+    <>
+      <div className="md:pt-12">
+        <Search />
       </div>
-    </div>
+
+      <div className="pt-11">
+        <ADs />
+      </div>
+
+      <div className="pt-10">
+        <Categorys />
+      </div>
+    </>
   )
 }
