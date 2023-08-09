@@ -11,6 +11,7 @@ interface ArrowButtonProps {
   style?: CSSProperties
   onClick?: () => void
 }
+
 const ArrowButton = memo(function ArrowButton({
   direction = 'left',
   size = 'normal',
@@ -20,7 +21,7 @@ const ArrowButton = memo(function ArrowButton({
   onClick,
 }: ArrowButtonProps) {
   return (
-    <div
+    <button
       className={clsx(
         { 'rotate-180': direction === 'left' },
         { 'p-2': size === 'normal' },
@@ -33,7 +34,7 @@ const ArrowButton = memo(function ArrowButton({
       onClick={onClick}
     >
       <ArrowIcon className={clsx('text-2xl')} />
-    </div>
+    </button>
   )
 })
 

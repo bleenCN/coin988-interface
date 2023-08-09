@@ -48,7 +48,7 @@ const ADs = memo(function ADd() {
       }}
       onSwiper={(swiper) => setSwiper(swiper)}
       loop
-      className="group overflow-hidden rounded-xl"
+      className="group rounded-xl"
     >
       {ads.map((ad, index) => {
         return (
@@ -66,12 +66,12 @@ const ADs = memo(function ADd() {
 
       <ArrowButton
         direction="left"
-        className="absolute left-5 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100"
+        className="absolute left-0 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 md:left-5"
         onClick={() => swiper?.slidePrev()}
       />
       <ArrowButton
         direction="right"
-        className="absolute right-5 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100"
+        className="absolute right-0 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 md:right-5"
         onClick={() => swiper?.slideNext()}
       />
     </SwiperFC>

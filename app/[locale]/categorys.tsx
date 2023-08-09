@@ -1,7 +1,12 @@
 import Image from 'next/image'
 import { memo } from 'react'
 
-import { LayeredIcon } from '@/components/ui/icons.b'
+import {
+  DiscordIcon,
+  LayeredIcon,
+  TwitterIcon,
+  WebSiteIcon,
+} from '@/components/ui/icons.b'
 import RoundButton from '@/components/ui/round-button'
 import { getT } from '@/lib/utils'
 const json = {
@@ -112,10 +117,16 @@ const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project 
         className="overflow-hidden rounded-xl"
       />
       <span className="flex-1 text-xl font-semibold">{project.name}</span>
-      <div>
-        {project.website && <span>1</span>}
-        {project.twitter && <span>2</span>}
-        {project.discord && <span>3</span>}
+      <div className="flex gap-3 text-xl">
+        {project.website && (
+          <WebSiteIcon tabIndex={0} className="cursor-pointer text-[#9EA1AC]" />
+        )}
+        {project.twitter && (
+          <TwitterIcon tabIndex={0} className="cursor-pointer text-[#9EA1AC]" />
+        )}
+        {project.discord && (
+          <DiscordIcon tabIndex={0} className="cursor-pointer text-[#9EA1AC]" />
+        )}
       </div>
     </div>
   )

@@ -5,15 +5,15 @@ import Search from './search'
 export default function Home() {
   return (
     <>
-      <div className="md:pt-12">
+      <div className="container md:pt-12">
         <Search />
       </div>
 
-      <div className="pt-11">
+      <div className="container pt-11">
         <ADs />
       </div>
 
-      <div className="pt-10">
+      <div className="container pt-10">
         <Categorys />
       </div>
     </>
