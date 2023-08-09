@@ -1,5 +1,6 @@
 import ADs from './ads'
 import Categorys from './categorys'
+import NewTokens from './NewTokens'
 import Search from './search'
 
 export default function Home() {
@@ -15,6 +16,10 @@ export default function Home() {
 
       <div className="container pt-10">
         <Categorys />
+      </div>
+
+      <div className="container pt-10">
+        <NewTokens />
       </div>
     </>
   )

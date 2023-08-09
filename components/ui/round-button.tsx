@@ -17,7 +17,7 @@ const RoundButton = memo(function RoundButton({
   return (
     <button
       className={clsx(
-        'rounded-full border-2 px-8 py-3',
+        'rounded-full border-2 px-4 py-2 lg:px-8 lg:py-3',
         { 'border-white font-semibold text-white outline-white': theme === 'white' },
         { 'border-[#292A2D] text-[#292A2D]': theme === 'black' },
         className,

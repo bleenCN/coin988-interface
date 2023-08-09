@@ -8,6 +8,7 @@ import {
   WebSiteIcon,
 } from '@/components/ui/icons.b'
 import RoundButton from '@/components/ui/round-button'
+import Title from '@/components/ui/Title'
 import { getT } from '@/lib/utils'
 const json = {
   title: '应用分类',
@@ -33,7 +34,7 @@ const Categorys = memo(function Categorys() {
   ]
   return (
     <div>
-      <h1 className="text-[32px] font-extrabold">{t('title')}</h1>
+      <Title>{t('title')}</Title>
 
       <div className="grid grid-cols-1 gap-6 pt-8 md:grid-cols-2">
         <div>
@@ -98,9 +99,9 @@ const CategoryTitle = memo(function Category(props: CategoryProps) {
   const t = getT(json)
 
   return (
-    <div className="flex h-[90px] items-center rounded-xl bg-[#292A2D] py-2 pl-3 pr-6 text-white">
-      {props.icon}
-      <span className="flex-1">{props.category}</span>
+    <div className="flex h-20 items-center rounded-xl bg-[#292A2D] py-2 pl-3 pr-6 text-white lg:h-[90px]">
+      <span className="mr-5">{props.icon}</span>
+      <span className="flex-1 font-semibold lg:text-2xl">{props.category}</span>
       <RoundButton className="text-sm">{t('more')}</RoundButton>
     </div>
   )
@@ -114,19 +115,15 @@ const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project 
         alt={project.name}
         width={50}
         height={50}
-        className="overflow-hidden rounded-xl"
+        className="h-10 w-10 overflow-hidden rounded-xl lg:h-12 lg:w-12"
       />
-      <span className="flex-1 text-xl font-semibold">{project.name}</span>
+
+      <span className="flex-1 text-sm font-semibold md:text-xl">{project.name}</span>
+
       <div className="flex gap-3 text-xl">
-        {project.website && (
-          <WebSiteIcon tabIndex={0} className="cursor-pointer text-[#9EA1AC]" />
-        )}
-        {project.twitter && (
-          <TwitterIcon tabIndex={0} className="cursor-pointer text-[#9EA1AC]" />
-        )}
-        {project.discord && (
-          <DiscordIcon tabIndex={0} className="cursor-pointer text-[#9EA1AC]" />
-        )}
+        {project.website && <WebSiteIcon tabIndex={0} className="cursor-pointer" />}
+        {project.twitter && <TwitterIcon tabIndex={0} className="cursor-pointer" />}
+        {project.discord && <DiscordIcon tabIndex={0} className="cursor-pointer" />}
       </div>
     </div>
   )
