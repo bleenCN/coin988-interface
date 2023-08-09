@@ -1,0 +1,8 @@
+{
+  "greeting": "Welcome",
+  "theme-toggle": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  }
+}
