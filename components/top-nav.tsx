@@ -7,7 +7,7 @@ import Link from 'next-intl/link'
 import { cn } from '@/lib/utils'
 
 export function TopNav() {
-  const t = useTranslations()
+  const t = useTranslations('top-nav')
 
   return (
     <nav className="flex flex-col gap-8 lg:flex-row">

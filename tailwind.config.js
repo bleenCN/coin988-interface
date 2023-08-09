@@ -4,7 +4,7 @@ module.exports = {
   content: ['components/**/*.{js,ts,jsx,tsx,mdx}', 'app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     container: {
-      padding: '2rem',
+      padding: '1rem',
       screens: {
         '2xl': '1400px',
       },

@@ -6,7 +6,13 @@
     "system": "自动"
   },
   "apply": "申请",
-  "ecosystem": "生态",
-  "launchpad": "打新",
-  "market": "市场"
+  "top-nav": {
+    "ecosystem": "生态",
+    "launchpad": "打新",
+    "market": "市场"
+  },
+  "ecosystem": {
+    "hot": "热门",
+    "latest": "最新"
+  }
 }

@@ -6,7 +6,13 @@
     "system": "System"
   },
   "apply": "Apply",
-  "ecosystem": "Ecosystem",
-  "launchpad": "Launchpad",
-  "market": "Market"
+  "top-nav": {
+    "ecosystem": "Ecosystem",
+    "launchpad": "Launchpad",
+    "market": "Market"
+  },
+  "ecosystem": {
+    "hot": "Hot",
+    "latest": "Latest"
+  }
 }

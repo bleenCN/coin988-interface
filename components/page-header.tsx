@@ -16,7 +16,7 @@ export default function PageHeader({ locale }: { locale: string }) {
   const t = useTranslations()
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-background/90 backdrop-blur-xl supports-backdrop-blur:bg-background/5">
+    <header className="sticky top-0 z-40 w-full bg-background/90 backdrop-blur-2xl supports-backdrop-blur:bg-background/5">
       <div className="container flex h-16 items-center lg:h-20">
         <Logo locale={locale} />
         <div className="ml-[60px] hidden lg:block">
