@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+import { LogoSvg } from '@/components/logo'
+import { PageBackground } from '@/components/page-background'
 import PageHeader from '@/components/page-header'
 import { I18nProvider, ThemeProvider } from '@/components/providers'
 import { getDictionary } from '@/get-dictionary'
@@ -35,12 +37,12 @@ export default async function Layout({
         <link rel="icon" href="/favicon.svg" type="image/svg" />
       </head>
       <body>
+        <PageBackground />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <I18nProvider locale={locale} messages={dictionary}>
-            <div className="flex min-h-screen flex-col">
-              <PageHeader locale={locale} />
-              <div className="container mx-auto flex-1">{children}</div>
-            </div>
+            <PageHeader locale={locale} />
+            {children}
+            <LogoSvg />
           </I18nProvider>
         </ThemeProvider>
       </body>

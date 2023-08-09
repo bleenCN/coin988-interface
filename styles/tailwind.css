@@ -34,6 +34,8 @@
     --ring: 215 20.2% 65.1%;
 
     --radius: 0.5rem;
+
+    --brand: 226 100% 59%;
   }
 
   .dark {
@@ -73,6 +75,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply min-h-screen bg-background bg-contain bg-fixed bg-no-repeat text-foreground;
   }
 }

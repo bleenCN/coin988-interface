@@ -4,5 +4,9 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
-  }
+  },
+  "apply": "Apply",
+  "ecosystem": "Ecosystem",
+  "launchpad": "Launchpad",
+  "market": "Market"
 }

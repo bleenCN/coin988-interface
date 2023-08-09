@@ -8,6 +8,7 @@ module.exports = {
       screens: {
         '2xl': '1400px',
       },
+      center: true,
     },
     extend: {
       colors: {
@@ -20,6 +21,10 @@ module.exports = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
+        },
+        'primary-invert': {
+          DEFAULT: 'hsl(var(--primary-foreground))',
+          foreground: 'hsl(var(--primary))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -48,5 +53,13 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animate'),
+    function ({ addVariant }) {
+      addVariant(
+        'supports-backdrop-blur',
+        '@supports (backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))',
+      )
+    },
+  ],
 }
