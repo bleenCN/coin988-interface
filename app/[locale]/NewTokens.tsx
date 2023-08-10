@@ -188,6 +188,7 @@ const TokenPoster = memo(function TokenPoster(props: {
   tokenInfo: TokenInfo
   hidden?: boolean
 }) {
+  const { countdown } = useCountdown(props.tokenInfo.deadline)
   return (
     <div className="relative">
       <Image
@@ -202,33 +203,30 @@ const TokenPoster = memo(function TokenPoster(props: {
         )}
       />
 
-      <div className="absolute bottom-0 w-full bg-black/20 text-white lg:hidden">
+      <div className="absolute bottom-0 w-full rounded-b-xl bg-black/20 p-2 text-white lg:hidden">
         <div className="flex items-center">
           <Image
             src={props.tokenInfo.tokenIconUrl}
             alt={''}
             width={80}
             height={80}
-            className="h-14 w-14 xl:h-16 xl:w-16"
+            className="h-10 w-10"
           />
 
-          <div className="flex flex-1 flex-col justify-between pl-4">
-            <h1 className="text-xl font-semibold xl:text-2xl">
-              {props.tokenInfo.tokenSymbol}
-            </h1>
-            <div className="flex gap-2 py-0.5 lg:text-xl xl:text-2xl">
+          <div className="flex flex-1 flex-col justify-between pl-2">
+            <h1 className="text-lg font-semibold">{props.tokenInfo.tokenSymbol}</h1>
+            <div className="flex gap-2 py-0.5">
               <WebSiteIcon tabIndex={0} theme="white" />
               <DiscordIcon tabIndex={0} theme="white" />
               <TwitterIcon tabIndex={0} theme="white" />
             </div>
           </div>
 
-          <div
-            className={clsx(
-              'h-fit opacity-50 transition-all hover:opacity-100 group-hover:translate-x-1',
-            )}
-          >
-            <ArrowButton type="outline" direction="right" />
+          <div className="text-end text-xs">
+            <div className="mb-2">{`1 ETH = ${
+              props.tokenInfo.rateOfEth
+            } ${props.tokenInfo.tokenSymbol.toUpperCase()}`}</div>
+            <div>{countdown}</div>
           </div>
         </div>
       </div>

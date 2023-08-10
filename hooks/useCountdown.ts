@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react'
 dayjs.extend(duration)
 
 export function useCountdown(deadline: Date) {
-  const [countdown, setCountdown] = useState('')
+  const [countdown, setCountdown] = useState('--d --h --m')
 
   const updateCountdown = useCallback(() => {
     const now = new Date()
