@@ -57,25 +57,50 @@ export const BlogIcon = memo(function BlogIcon(props: ImgProps) {
   )
 })
 
-export const ArrowIcon = memo(function ArrowIcon(props: IconProps) {
-  return (
-    <svg
-      width="1em"
-      height="1em"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path
-        d="M8 4L16 12L8 20"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
+export const ArrowIcon = memo(function ArrowIcon(
+  props: IconProps & { type?: 'outline' | 'flat' },
+) {
+  const type = props.type ?? 'flat'
+  if (type === 'flat')
+    return (
+      <svg
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+      >
+        <path
+          d="M8 4L16 12L8 20"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    )
+
+  if (type === 'outline')
+    return (
+      <svg
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g>
+          <path
+            d="M4 12H20M20 12L13 5M20 12L13 19"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+      </svg>
+    )
 })
 
 export const LayeredIcon = memo(function LayeredIcon(props: ImgProps) {

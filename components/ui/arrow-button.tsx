@@ -9,6 +9,7 @@ interface ArrowButtonProps {
   type?: 'outline' | 'flat'
   className?: string
   style?: CSSProperties
+  theme?: 'light' | 'dark'
   onClick?: () => void
 }
 
@@ -17,6 +18,7 @@ const ArrowButton = memo(function ArrowButton({
   size = 'normal',
   type = 'flat',
   className,
+  theme = 'light',
   style,
   onClick,
 }: ArrowButtonProps) {
@@ -24,16 +26,16 @@ const ArrowButton = memo(function ArrowButton({
     <button
       className={clsx(
         { 'rotate-180': direction === 'left' },
-        { 'p-2': size === 'normal' },
-        { 'p-3.5': size === 'lg' },
-        { ' bg-black/50': type === 'flat' },
+        { 'p-2': size === 'normal', 'p-3.5': size === 'lg' },
+        { ' bg-black/50': type === 'flat', border: type === 'outline' },
+        { 'text-white': theme === 'light', 'text-black': theme === 'dark' },
         'w-fit cursor-pointer rounded-full transition-all',
         className,
       )}
       style={style}
       onClick={onClick}
     >
-      <ArrowIcon className={clsx('text-2xl')} />
+      <ArrowIcon type={type} className={clsx('text-2xl')} />
     </button>
   )
 })

@@ -12,7 +12,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        dark:'#292A2D',
+        'dark-background': '#292A2D',
+        'dark-foreground': '#3E3F44',
+        'dark-foreground-active': '#2E60FF',
+        'light-foreground': '#F6F9FF',
+        'light-foreground-hover': '#DCE3F1',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

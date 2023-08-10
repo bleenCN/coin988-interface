@@ -99,7 +99,7 @@ const CategoryTitle = memo(function Category(props: CategoryProps) {
   const t = getT(json)
 
   return (
-    <div className="flex h-20 items-center rounded-xl bg-[#292A2D] py-2 pl-3 pr-6 text-white lg:h-[90px]">
+    <div className="flex h-20 items-center rounded-xl bg-dark-background py-2 pl-3 pr-6 text-white lg:h-[90px]">
       <span className="mr-5">{props.icon}</span>
       <span className="flex-1 font-semibold lg:text-2xl">{props.category}</span>
       <RoundButton className="text-sm">{t('more')}</RoundButton>
@@ -109,7 +109,7 @@ const CategoryTitle = memo(function Category(props: CategoryProps) {
 
 const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project }) {
   return (
-    <div className="flex cursor-pointer items-center gap-4 overflow-hidden rounded-xl bg-[#F6F9FF] p-4 dark:bg-dark">
+    <div className="flex cursor-pointer items-center gap-4 overflow-hidden rounded-xl bg-light-foreground p-4 transition-all hover:bg-light-foreground-hover dark:bg-dark-foreground">
       <Image
         src={project.url}
         alt={project.name}
