@@ -168,7 +168,7 @@ const TokenBoard = memo(function TokenBoard(props: {
               'h-fit opacity-50 transition-all hover:opacity-100 group-hover:translate-x-1',
             )}
           >
-            <ArrowButton type="outline" direction="right" />
+            <ArrowButton type="outline" shape="→" direction="right" />
           </div>
         </div>
 

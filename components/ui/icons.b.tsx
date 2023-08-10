@@ -58,10 +58,10 @@ export const BlogIcon = memo(function BlogIcon(props: ImgProps) {
 })
 
 export const ArrowIcon = memo(function ArrowIcon(
-  props: IconProps & { type?: 'outline' | 'flat' },
+  props: IconProps & { shape?: '>' | '→' },
 ) {
-  const type = props.type ?? 'flat'
-  if (type === 'flat')
+  const shape = props.shape ?? '>'
+  if (shape === '>')
     return (
       <svg
         width="1em"
@@ -81,7 +81,7 @@ export const ArrowIcon = memo(function ArrowIcon(
       </svg>
     )
 
-  if (type === 'outline')
+  if (shape === '→')
     return (
       <svg
         width="1em"
