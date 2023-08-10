@@ -61,5 +61,5 @@ export function PageBackground() {
     return () => window.removeEventListener('resize', drawBlurredEllipse)
   })
 
-  return <canvas className="fixed -z-10" ref={canvasRef} />
+  return <canvas className="absolute -z-10" ref={canvasRef} />
 }

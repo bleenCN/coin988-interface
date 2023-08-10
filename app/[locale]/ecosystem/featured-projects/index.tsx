@@ -1,13 +1,14 @@
+import { FeaturedProjectsTab } from '../types'
 import { ProjectsList } from './projects-list'
 import { Tabs } from './tabs'
 
-export function FeaturedProjects() {
+export function FeaturedProjects({ tab = 'hot' }: { tab?: FeaturedProjectsTab }) {
   return (
-    <section className="mt-4 lg:mt-[42px]">
+    <section className="container mt-4 lg:mt-[42px]">
       <h2 className="sr-only">Featured projects</h2>
-      <Tabs />
+      <Tabs activeTab={tab} />
       <div className="mt-4 md:mt-10">
-        <ProjectsList />
+        <ProjectsList tab={tab} />
       </div>
     </section>
   )

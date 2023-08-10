@@ -3,6 +3,7 @@ import Image from 'next/image'
 import * as z from 'zod'
 
 import { ExternalLink } from '@/components/external-link'
+import { Badge } from '@/components/ui/badge'
 import {
   DiscordIcon,
   GithubIcon,
@@ -17,22 +18,35 @@ const ProjectSchema = z
     id: z.string(),
     name: z.string(),
     imageUrl: z.string(),
-    describe: z.string(),
     website: z.string().optional(),
     telegram: z.string().optional(),
     github: z.string().optional(),
     twitter: z.string().optional(),
     discord: z.string().optional(),
+    categories: z.array(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+      }),
+    ),
   })
   .transform((project) => {
-    const { id, name, imageUrl, describe, website, telegram, github, twitter, discord } =
-      project
+    const {
+      id,
+      name,
+      imageUrl,
+      website,
+      telegram,
+      github,
+      twitter,
+      discord,
+      categories,
+    } = project
 
     return {
       id,
       name,
       imageUrl,
-      description: describe,
       links: [
         { brand: 'website', url: website },
         { brand: 'twitter', url: twitter },
@@ -40,6 +54,7 @@ const ProjectSchema = z
         { brand: 'telegram', url: telegram },
         { brand: 'github', url: github },
       ].filter((linkObj) => Boolean(linkObj.url)),
+      categories,
     }
   })
 
@@ -68,21 +83,31 @@ const query = gql`
         discord
         telegram
         github
+        categories {
+          id
+          name
+        }
       }
     }
   }
 `
 
-export async function ProjectsList({ tab = 'hot' }: { tab?: 'hot' | 'latest' }) {
+export async function Projects({
+  category,
+  isParent,
+}: {
+  category: string | undefined
+  isParent: boolean
+}) {
   const variables = {
     projectInputArgs: {
       chainName: 'BASE',
-      isHot: tab === 'hot',
-      isNew: tab === 'latest',
+      categoryId: category,
+      isParent,
     },
     paginationInputArgs: {
       current: 0,
-      pageSize: 8,
+      pageSize: 100,
     },
   }
 
@@ -91,9 +116,11 @@ export async function ProjectsList({ tab = 'hot' }: { tab?: 'hot' | 'latest' }) 
   try {
     data = await gqlClient.request(query, variables)
   } catch (error) {
+    console.log({ variables, error })
+
     return (
       <div className="flex h-[300px] items-center justify-center rounded-xl bg-card">
-        Error data
+        Error
       </div>
     )
   }
@@ -113,42 +140,45 @@ export async function ProjectsList({ tab = 'hot' }: { tab?: 'hot' | 'latest' }) 
   }
 
   return (
-    <div className="overflow-hidden">
-      <div className="flex w-auto gap-6 overflow-x-auto sm:grid sm:grid-cols-[repeat(4,45%)] sm:grid-rows-2 lg:grid-cols-4">
-        {projects.map((project) => (
-          <article
-            key={project.id}
-            className="w-10/12 shrink-0 rounded-xl bg-card p-4 sm:w-full sm:p-6"
-          >
-            <header className="flex items-center">
-              <Image
-                src={project.imageUrl}
-                alt=""
-                width={50}
-                height={50}
-                unoptimized
-                className="mr-3 rounded-xl"
-              />
-              <div>
-                <h3 className="line-clamp-1 text-xl font-semibold" title={project.name}>
-                  {project.name}
-                </h3>
-                <div className="mt-1.5 flex items-center gap-3">
-                  {project.links.map(({ brand, url }) => (
-                    <ExternalLink key={brand} href={url}>
-                      {getSocialLinkIcon(brand)}
-                    </ExternalLink>
-                  ))}
-                </div>
-              </div>
-            </header>
-            <p className="mt-4 line-clamp-3 text-sm text-[#9EA1AC]">
-              {project.description}
-            </p>
-          </article>
-        ))}
-      </div>
-    </div>
+    <>
+      {projects.map((project) => (
+        <article key={project.id} className="flex flex-col rounded-xl border bg-card">
+          <div className="aspect-h-1 aspect-w-2 w-full overflow-hidden rounded-t-xl">
+            <div
+              className="bg-cover bg-no-repeat blur-lg"
+              style={{ backgroundImage: `url(${project.imageUrl})` }}
+            />
+          </div>
+          <div className="relative mx-auto -mt-[25px] h-[50px] w-[50px]">
+            <Image
+              src={project.imageUrl}
+              alt=""
+              width={50}
+              height={50}
+              unoptimized
+              className="rounded-full"
+            />
+          </div>
+          <div className="flex flex-1 flex-col items-center px-1">
+            <h3 className="mt-3 break-all text-center font-semibold">{project.name}</h3>
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
+              {project.categories.map((category) => (
+                <Badge key={category.id} variant="soft">
+                  {category.name}
+                </Badge>
+              ))}
+            </div>
+            <div className="mt-auto flex items-center gap-3 py-[22px]">
+              {project.links.map(({ brand, url }) => (
+                <ExternalLink key={brand} href={url}>
+                  {getSocialLinkIcon(brand)}
+                </ExternalLink>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </>
   )
 }
 
