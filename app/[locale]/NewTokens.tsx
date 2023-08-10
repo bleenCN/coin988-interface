@@ -177,7 +177,9 @@ const TokenBoard = memo(function TokenBoard(props: {
             props.tokenInfo.rateOfEth
           } ${props.tokenInfo.tokenSymbol.toUpperCase()}`}</div>
 
-          <div>{countdown}</div>
+          <div className={clsx(!!props.active ? 'text-white' : 'text-[#2EFFA7]')}>
+            {countdown}
+          </div>
         </div>
       </div>
     </>
@@ -226,7 +228,7 @@ const TokenPoster = memo(function TokenPoster(props: {
             <div className="mb-2">{`1 ETH = ${
               props.tokenInfo.rateOfEth
             } ${props.tokenInfo.tokenSymbol.toUpperCase()}`}</div>
-            <div>{countdown}</div>
+            <div className="text-[#2EFFA7]">{countdown}</div>
           </div>
         </div>
       </div>
