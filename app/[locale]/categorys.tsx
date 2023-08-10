@@ -109,7 +109,7 @@ const CategoryTitle = memo(function Category(props: CategoryProps) {
 
 const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project }) {
   return (
-    <div className="flex cursor-pointer items-center gap-4 overflow-hidden rounded-xl bg-[#F6F9FF] p-4">
+    <div className="flex cursor-pointer items-center gap-4 overflow-hidden rounded-xl bg-[#F6F9FF] p-4 dark:bg-dark">
       <Image
         src={project.url}
         alt={project.name}

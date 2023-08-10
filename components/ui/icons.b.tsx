@@ -88,7 +88,10 @@ export const PieIcon = memo(function LayeredIcon(props: ImgProps) {
   return <Image src={'/images/icon-pie.png'} alt={''} width={74} height={74} {...props} />
 })
 
-export const WebSiteIcon = memo(function WebSiteIcon(props: IconProps) {
+export const WebSiteIcon = memo(function WebSiteIcon(
+  props: IconProps & { theme?: 'white' | 'dark' },
+) {
+  const theme = props.theme ?? 'dark'
   return (
     <svg
       {...props}
@@ -97,7 +100,12 @@ export const WebSiteIcon = memo(function WebSiteIcon(props: IconProps) {
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
       className={clsx(
-        'fill-black/40 transition-all hover:fill-black/80',
+        'transition-all',
+        {
+          'fill-black/40 hover:fill-black/80': theme === 'dark',
+          'dark:fill-white/20 hover:dark:fill-white/40': theme === 'dark',
+          'fill-white/40 hover:fill-white/80': theme === 'white',
+        },
         props.className,
       )}
     >
@@ -107,9 +115,9 @@ export const WebSiteIcon = memo(function WebSiteIcon(props: IconProps) {
 })
 
 export const TwitterIcon = memo(function TwitterIcon(
-  props: IconProps & { theme?: 'white' | 'black' },
+  props: IconProps & { theme?: 'white' | 'dark' },
 ) {
-  const theme = props.theme ?? 'black'
+  const theme = props.theme ?? 'dark'
   return (
     <svg
       {...props}
@@ -118,8 +126,12 @@ export const TwitterIcon = memo(function TwitterIcon(
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
       className={clsx(
-        { 'fill-black/40 transition-all hover:fill-black/80': theme === 'black' },
-        { 'fill-white/40 transition-all hover:fill-white/80': theme === 'white' },
+        'transition-all',
+        {
+          'fill-black/40 hover:fill-black/80': theme === 'dark',
+          'dark:fill-white/20 hover:dark:fill-white/40': theme === 'dark',
+          'fill-white/40 hover:fill-white/80': theme === 'white',
+        },
         props.className,
       )}
     >
@@ -128,7 +140,10 @@ export const TwitterIcon = memo(function TwitterIcon(
   )
 })
 
-export const DiscordIcon = memo(function DiscordIcon(props: IconProps) {
+export const DiscordIcon = memo(function DiscordIcon(
+  props: IconProps & { theme?: 'white' | 'dark' },
+) {
+  const theme = props.theme ?? 'dark'
   return (
     <svg
       {...props}
@@ -137,7 +152,12 @@ export const DiscordIcon = memo(function DiscordIcon(props: IconProps) {
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
       className={clsx(
-        'fill-black/40 transition-all hover:fill-black/80',
+        'transition-all',
+        {
+          'fill-black/40 hover:fill-black/80': theme === 'dark',
+          'dark:fill-white/20 hover:dark:fill-white/40': theme === 'dark',
+          'fill-white/40 hover:fill-white/80': theme === 'white',
+        },
         props.className,
       )}
     >

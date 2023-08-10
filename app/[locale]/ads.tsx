@@ -29,8 +29,10 @@ const ADs = memo(function ADd() {
 
   return (
     <SwiperFC
-      spaceBetween={12}
+      onSwiper={(swiper) => setSwiper(swiper)}
+      className="group rounded-xl"
       slidesPerView={1}
+      loop
       breakpoints={{
         768: {
           spaceBetween: 24,
@@ -46,9 +48,6 @@ const ADs = memo(function ADd() {
           slidesPerView: 5,
         },
       }}
-      onSwiper={(swiper) => setSwiper(swiper)}
-      loop
-      className="group rounded-xl"
     >
       {ads.map((ad, index) => {
         return (
@@ -58,7 +57,7 @@ const ADs = memo(function ADd() {
               alt={ad.alt}
               width={336}
               height={160}
-              className="block cursor-pointer"
+              className="h-auto w-full cursor-pointer px-1"
             />
           </SwiperSlide>
         )
@@ -66,12 +65,12 @@ const ADs = memo(function ADd() {
 
       <ArrowButton
         direction="left"
-        className="absolute left-0 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 md:left-5"
+        className="absolute left-1 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 md:left-5"
         onClick={() => swiper?.slidePrev()}
       />
       <ArrowButton
         direction="right"
-        className="absolute right-0 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 md:right-5"
+        className="absolute right-1 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 md:right-5"
         onClick={() => swiper?.slideNext()}
       />
     </SwiperFC>
