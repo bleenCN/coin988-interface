@@ -173,13 +173,16 @@ const TokenBoard = memo(function TokenBoard(props: {
         </div>
 
         <div className="flex justify-between pt-2 text-xs xl:pt-4 xl:text-lg">
-          <div className="mr-2 xl:mr-4">{`1 ETH = ${
+          <div
+            className={clsx(
+              'mr-2 xl:mr-4',
+              !!props.active ? 'text-white' : 'text-[#2EFFA7]',
+            )}
+          >{`1 ETH = ${
             props.tokenInfo.rateOfEth
           } ${props.tokenInfo.tokenSymbol.toUpperCase()}`}</div>
 
-          <div className={clsx(!!props.active ? 'text-white' : 'text-[#2EFFA7]')}>
-            {countdown}
-          </div>
+          <div>{countdown}</div>
         </div>
       </div>
     </>
@@ -225,10 +228,10 @@ const TokenPoster = memo(function TokenPoster(props: {
           </div>
 
           <div className="text-end text-xs">
-            <div className="mb-2">{`1 ETH = ${
+            <div className="mb-2 text-[#2EFFA7]">{`1 ETH = ${
               props.tokenInfo.rateOfEth
             } ${props.tokenInfo.tokenSymbol.toUpperCase()}`}</div>
-            <div className="text-[#2EFFA7]">{countdown}</div>
+            <div>{countdown}</div>
           </div>
         </div>
       </div>
