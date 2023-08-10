@@ -5,7 +5,7 @@ import { ImageProps } from 'next/dist/shared/lib/get-img-props'
 import Image from 'next/image'
 import { memo, useState } from 'react'
 import Swiper from 'swiper'
-import { Swiper as SwiperFC, SwiperSlide } from 'swiper/react'
+import { Swiper as SwiperContainer, SwiperSlide } from 'swiper/react'
 
 import ArrowButton from '@/components/ui/arrow-button'
 
@@ -28,7 +28,7 @@ const ADs = memo(function ADd() {
   const [swiper, setSwiper] = useState<Swiper | undefined>()
 
   return (
-    <SwiperFC
+    <SwiperContainer
       onSwiper={(swiper) => setSwiper(swiper)}
       className="group rounded-xl"
       slidesPerView={1}
@@ -58,7 +58,7 @@ const ADs = memo(function ADd() {
               alt={ad.alt}
               width={336}
               height={160}
-              className="h-auto w-full cursor-pointer px-1"
+              className="h-auto w-auto cursor-pointer px-1"
             />
           </SwiperSlide>
         )
@@ -74,7 +74,7 @@ const ADs = memo(function ADd() {
         className="absolute right-1 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 md:right-5"
         onClick={() => swiper?.slideNext()}
       />
-    </SwiperFC>
+    </SwiperContainer>
   )
 })
 

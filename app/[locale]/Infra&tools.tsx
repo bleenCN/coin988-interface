@@ -64,7 +64,7 @@ const InfraAndTools = memo(function InfraAndTools() {
 const ToolsSwiper = memo(function ToolsSwiper() {
   const maskStyle: CSSProperties = {
     WebkitMask:
-      'linear-gradient(to right,transparent 0%, #fff 10%, #fff 90%, transparent 100%)',
+      'linear-gradient(to right,transparent 0%, #fff 100px, #fff calc(100% - 100px), transparent 100%)',
   }
 
   const [swiper, setSwiper] = useState<Swiper | undefined>(undefined)
@@ -97,13 +97,13 @@ const ToolsSwiper = memo(function ToolsSwiper() {
 
       <div
         onClick={() => swiper?.slidePrev()}
-        className="absolute left-0 top-1/2 z-10 -translate-y-1/2"
+        className="absolute left-0 top-1/2 z-10 -translate-y-1/2 scale-50 lg:scale-100"
       >
         <ArrowButton type="outline" direction="left" theme="dark" shape=">" />
       </div>
       <div
         onClick={() => swiper?.slideNext()}
-        className="absolute right-0 top-1/2 z-10 -translate-y-1/2"
+        className="absolute right-0 top-1/2 z-10 -translate-y-1/2 scale-50 lg:scale-100"
       >
         <ArrowButton type="outline" direction="right" theme="dark" shape=">" />
       </div>

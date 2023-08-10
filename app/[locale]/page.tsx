@@ -1,7 +1,7 @@
 import ADs from './ads'
 import Categorys from './categorys'
 import InfraAndTools from './Infra&tools'
-import NewTokens from './NewTokens'
+import NewTokens from './new-tokens'
 import Search from './search'
 import TwitterStars from './twitter-stars'
 
