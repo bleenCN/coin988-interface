@@ -5,6 +5,7 @@ const nextConfig = {
     config.externals.push('encoding')
     return config
   },
+  output: 'standalone',
 }
 
 module.exports = nextConfig
