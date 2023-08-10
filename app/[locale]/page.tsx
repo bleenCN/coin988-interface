@@ -3,6 +3,7 @@ import Categorys from './categorys'
 import InfraAndTools from './Infra&tools'
 import NewTokens from './NewTokens'
 import Search from './search'
+import TwitterStars from './twitter-stars'
 
 export default function Home() {
   return (
@@ -25,6 +26,10 @@ export default function Home() {
 
       <div className="container pt-14">
         <InfraAndTools />
+      </div>
+
+      <div className="container pt-10">
+        <TwitterStars />
       </div>
     </>
   )

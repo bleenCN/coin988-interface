@@ -85,7 +85,8 @@ const ToolsSwiper = memo(function ToolsSwiper() {
         style={maskStyle}
         loop
       >
-        {tools.map((tool, index) => (
+        {/* 依据官方文档 slide 数量应大于 preview*2 */}
+        {tools.concat(tools).map((tool, index) => (
           <SwiperSlide key={index}>
             <div className="p-2">
               <ToolBoard tool={tool} />

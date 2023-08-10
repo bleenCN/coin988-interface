@@ -49,7 +49,8 @@ const ADs = memo(function ADd() {
         },
       }}
     >
-      {ads.map((ad, index) => {
+      {/* 依据官方文档 slide 数量应大于 preview*2 */}
+      {ads.concat(ads).map((ad, index) => {
         return (
           <SwiperSlide key={index}>
             <Image
