@@ -3,11 +3,12 @@ import clsx from 'clsx'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 import Image from 'next/image'
-import { memo, useCallback, useEffect, useState } from 'react'
+import { memo, useState } from 'react'
 
 import ArrowButton from '@/components/ui/arrow-button'
 import { DiscordIcon, TwitterIcon, WebSiteIcon } from '@/components/ui/icons.b'
 import Title from '@/components/ui/Title'
+import { useCountdown } from '@/hooks/useCountdown'
 import { getT } from '@/lib/utils'
 
 const json = {
@@ -73,7 +74,6 @@ const NewTokens = memo(function NewTokens() {
     // },
   ]
   const [activeIndex, setActiveIndex] = useState(0)
-  console.log(68, activeIndex)
 
   return (
     <>
@@ -120,26 +120,7 @@ const TokenBoard = memo(function TokenBoard(props: {
   tokenInfo: TokenInfo
   active?: boolean
 }) {
-  const [countdown, setCountdown] = useState('')
-
-  const updateCountdown = useCallback(() => {
-    const now = new Date()
-    const diff = props.tokenInfo.deadline.getTime() - now.getTime()
-    const diffObj = dayjs.duration(diff)
-
-    const days = diffObj.days()
-    const hours = diffObj.hours()
-    const minutes = diffObj.minutes()
-    setCountdown(`${days}d ${hours}h ${minutes}m`)
-    console.log(134)
-  }, [props.tokenInfo.deadline])
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      updateCountdown()
-    }, 1000)
-    return () => clearInterval(timer)
-  }, [updateCountdown])
+  const { countdown } = useCountdown(props.tokenInfo.deadline)
 
   return (
     <>
