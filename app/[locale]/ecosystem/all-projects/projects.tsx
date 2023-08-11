@@ -17,7 +17,7 @@ export async function Projects({
   } catch (error) {
     return (
       <div className="flex h-[300px] items-center justify-center rounded-xl bg-card">
-        Error
+        Invalid data
       </div>
     )
   }

@@ -17,7 +17,7 @@ const projectsQuery = gql`
       records {
         id
         name
-        imageUrl
+        logo
         describe
         website
         twitter

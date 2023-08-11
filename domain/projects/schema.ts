@@ -4,7 +4,7 @@ export const ProjectSchema = z
   .object({
     id: z.string(),
     name: z.string(),
-    imageUrl: z.string(),
+    logo: z.string(),
     describe: z.string(),
     website: z.string().optional(),
     telegram: z.string().optional(),
@@ -22,7 +22,7 @@ export const ProjectSchema = z
     const {
       id,
       name,
-      imageUrl,
+      logo,
       describe,
       website,
       telegram,
@@ -35,7 +35,7 @@ export const ProjectSchema = z
     return {
       id,
       name,
-      imageUrl,
+      imageUrl: logo,
       description: describe,
       links: [
         { brand: 'website', url: website },

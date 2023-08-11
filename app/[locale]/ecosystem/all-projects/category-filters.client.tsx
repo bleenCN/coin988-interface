@@ -1,7 +1,5 @@
 'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation'
-import { usePathname } from 'next-intl/client'
 import * as React from 'react'
 import { z } from 'zod'
 
@@ -39,19 +37,13 @@ const CategorysSchema = z.object({
 
 type Categories = z.infer<typeof CategorysSchema>
 
-export function CategoryFiltersClient({ categories }: { categories: Categories }) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-
-  function handleCategoryClick(category: string, isParent: boolean) {
-    // @ts-ignore
-    const nextSearchParams = new URLSearchParams(searchParams)
-    nextSearchParams.set('category', category)
-    nextSearchParams.set('isParent', String(isParent))
-    router.replace(pathname + '?' + nextSearchParams.toString(), { scroll: false })
-  }
-
+export function CategoryFiltersClient({
+  categories,
+  onCategorySwitch,
+}: {
+  categories: Categories
+  onCategorySwitch: (category: string, isParent: boolean) => void
+}) {
   return (
     <ul>
       <Accordion type="single" collapsible>
@@ -59,7 +51,7 @@ export function CategoryFiltersClient({ categories }: { categories: Categories }
           <li key={category.id}>
             <AccordionItem
               value={category.id}
-              onClick={() => handleCategoryClick(category.id, true)}
+              onClick={() => onCategorySwitch(category.id, true)}
             >
               <AccordionTrigger className="px-4">
                 {getGategoryIcon(category.name)}
@@ -77,7 +69,7 @@ export function CategoryFiltersClient({ categories }: { categories: Categories }
                         className="flex w-full justify-between py-2.5 pl-11 pr-12 hover:bg-accent"
                         onClick={(e) => {
                           e.stopPropagation()
-                          handleCategoryClick(subcategory.id, false)
+                          onCategorySwitch(subcategory.id, false)
                         }}
                       >
                         {subcategory.name}
