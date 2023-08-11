@@ -137,7 +137,7 @@ const TokenBoard = memo(function TokenBoard(props: {
 
       <div
         className={clsx(
-          'm-1 hidden max-w-[600px] rounded-xl bg-dark-foreground p-2 text-white',
+          'm-1 hidden rounded-xl bg-dark-foreground p-2 text-white',
           'group cursor-pointer transition-all lg:block xl:rounded-[20px]  xl:p-4 xl:pb-2',
           { 'bg-dark-foreground-active': !!props.active },
         )}
@@ -168,7 +168,7 @@ const TokenBoard = memo(function TokenBoard(props: {
               'h-fit opacity-50 transition-all hover:opacity-100 group-hover:translate-x-1',
             )}
           >
-            <ArrowButton type="outline" shape="→" direction="right" />
+            <ArrowButton type="outline" shape="→" direction="tr" />
           </div>
         </div>
 

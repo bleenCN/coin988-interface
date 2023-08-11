@@ -4,7 +4,7 @@ import React, { CSSProperties, memo } from 'react'
 import { ArrowIcon } from './icons.b'
 
 interface ArrowButtonProps {
-  direction?: 'left' | 'right'
+  direction?: 'tl' | 'tr'
   size?: 'normal' | 'lg'
   type?: 'outline' | 'flat'
   shape?: '>' | '→'
@@ -15,7 +15,7 @@ interface ArrowButtonProps {
 }
 
 const ArrowButton = memo(function ArrowButton({
-  direction = 'left',
+  direction = 'tl',
   size = 'normal',
   type = 'flat',
   shape = '>',
@@ -27,7 +27,7 @@ const ArrowButton = memo(function ArrowButton({
   return (
     <button
       className={clsx(
-        { 'rotate-180': direction === 'left' },
+        { 'rotate-180': direction === 'tl' },
         { 'p-2': size === 'normal', 'p-3.5': size === 'lg' },
         { ' bg-black/50': type === 'flat', border: type === 'outline' },
         {

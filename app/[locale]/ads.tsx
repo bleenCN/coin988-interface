@@ -4,8 +4,7 @@ import 'swiper/css'
 import { ImageProps } from 'next/dist/shared/lib/get-img-props'
 import Image from 'next/image'
 import { memo, useState } from 'react'
-import Swiper from 'swiper'
-import { Swiper as SwiperContainer, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 
 import ArrowButton from '@/components/ui/arrow-button'
 
@@ -25,10 +24,10 @@ const ADs = memo(function ADd() {
     { imgsrc: '/images/home-ad-placeholder2.png', alt: 'place-holder' },
     { imgsrc: '/images/home-ad-placeholder3.png', alt: 'place-holder' },
   ]
-  const [swiper, setSwiper] = useState<Swiper | undefined>()
+  const [swiper, setSwiper] = useState<SwiperClass | undefined>()
 
   return (
-    <SwiperContainer
+    <Swiper
       onSwiper={(swiper) => setSwiper(swiper)}
       className="group rounded-xl"
       slidesPerView={1}
@@ -65,16 +64,16 @@ const ADs = memo(function ADd() {
       })}
 
       <ArrowButton
-        direction="left"
+        direction="tl"
         className="absolute left-1 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 md:left-5"
         onClick={() => swiper?.slidePrev()}
       />
       <ArrowButton
-        direction="right"
+        direction="tr"
         className="absolute right-1 top-1/2 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 md:right-5"
         onClick={() => swiper?.slideNext()}
       />
-    </SwiperContainer>
+    </Swiper>
   )
 })
 

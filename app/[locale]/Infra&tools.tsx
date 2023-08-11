@@ -4,8 +4,7 @@ import 'swiper/css'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { CSSProperties, memo, useCallback, useState } from 'react'
-import Swiper from 'swiper'
-import { Swiper as SwiperContainer, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 
 import ArrowButton from '@/components/ui/arrow-button'
 import Title from '@/components/ui/Title'
@@ -67,16 +66,14 @@ const ToolsSwiper = memo(function ToolsSwiper() {
       'linear-gradient(to right,transparent 0%, #fff 100px, #fff calc(100% - 100px), transparent 100%)',
   }
 
-  const [swiper, setSwiper] = useState<Swiper | undefined>(undefined)
-  const updateSwiper = useCallback((swiper: Swiper) => {
-    console.log('update')
-
+  const [swiper, setSwiper] = useState<SwiperClass | undefined>(undefined)
+  const updateSwiper = useCallback((swiper: SwiperClass) => {
     setSwiper(swiper)
   }, [])
 
   return (
     <div className="relative">
-      <SwiperContainer
+      <Swiper
         slidesPerView={3}
         breakpoints={{
           768: { slidesPerView: 6 },
@@ -93,19 +90,19 @@ const ToolsSwiper = memo(function ToolsSwiper() {
             </div>
           </SwiperSlide>
         ))}
-      </SwiperContainer>
+      </Swiper>
 
       <div
         onClick={() => swiper?.slidePrev()}
-        className="absolute left-0 top-1/2 z-10 -translate-y-1/2 scale-50 lg:scale-100"
+        className="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 lg:block"
       >
-        <ArrowButton type="outline" direction="left" theme="dark" shape=">" />
+        <ArrowButton type="outline" direction="tl" theme="dark" shape=">" />
       </div>
       <div
         onClick={() => swiper?.slideNext()}
-        className="absolute right-0 top-1/2 z-10 -translate-y-1/2 scale-50 lg:scale-100"
+        className="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 lg:block"
       >
-        <ArrowButton type="outline" direction="right" theme="dark" shape=">" />
+        <ArrowButton type="outline" direction="tr" theme="dark" shape=">" />
       </div>
       <div></div>
     </div>
