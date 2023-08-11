@@ -1,6 +1,25 @@
 import Link from 'next/link'
 
-export function Logo({ locale }: { locale: string }) {
+interface LogoProps {
+  locale: string
+  staticShow?: boolean
+}
+
+export function Logo({ locale, staticShow = false }: LogoProps) {
+  if (staticShow)
+    return (
+      <svg
+        width="200"
+        height="42"
+        viewBox="0 0 200 42"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <use href="#logo" />
+        <use href="#logo-digits" />
+      </svg>
+    )
+
   return (
     <Link href={'/' + locale}>
       <svg
