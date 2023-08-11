@@ -114,7 +114,7 @@ export const PieIcon = memo(function LayeredIcon(props: ImgProps) {
 })
 
 export const WebSiteIcon = memo(function WebSiteIcon(
-  props: IconProps & { theme?: 'white' | 'dark' },
+  props: IconProps & { theme?: 'light' | 'dark' },
 ) {
   const theme = props.theme ?? 'dark'
   return (
@@ -129,7 +129,7 @@ export const WebSiteIcon = memo(function WebSiteIcon(
         {
           'fill-black/40 hover:fill-black/80': theme === 'dark',
           'dark:fill-white/20 hover:dark:fill-white/40': theme === 'dark',
-          'fill-white/40 hover:fill-white/80': theme === 'white',
+          'fill-white/40 hover:fill-white/80': theme === 'light',
         },
         props.className,
       )}
@@ -140,7 +140,7 @@ export const WebSiteIcon = memo(function WebSiteIcon(
 })
 
 export const TwitterIcon = memo(function TwitterIcon(
-  props: IconProps & { theme?: 'white' | 'dark' },
+  props: IconProps & { theme?: 'light' | 'dark' | 'blue' },
 ) {
   const theme = props.theme ?? 'dark'
   return (
@@ -155,7 +155,8 @@ export const TwitterIcon = memo(function TwitterIcon(
         {
           'fill-black/40 hover:fill-black/80': theme === 'dark',
           'dark:fill-white/20 hover:dark:fill-white/40': theme === 'dark',
-          'fill-white/40 hover:fill-white/80': theme === 'white',
+          'fill-white/40 hover:fill-white/80': theme === 'light',
+          'fill-dark-foreground-active': theme === 'blue',
         },
         props.className,
       )}
@@ -166,7 +167,7 @@ export const TwitterIcon = memo(function TwitterIcon(
 })
 
 export const DiscordIcon = memo(function DiscordIcon(
-  props: IconProps & { theme?: 'white' | 'dark' },
+  props: IconProps & { theme?: 'light' | 'dark' | 'blue' },
 ) {
   const theme = props.theme ?? 'dark'
   return (
@@ -181,7 +182,8 @@ export const DiscordIcon = memo(function DiscordIcon(
         {
           'fill-black/40 hover:fill-black/80': theme === 'dark',
           'dark:fill-white/20 hover:dark:fill-white/40': theme === 'dark',
-          'fill-white/40 hover:fill-white/80': theme === 'white',
+          'fill-white/40 hover:fill-white/80': theme === 'light',
+          'fill-dark-foreground-active': theme === 'blue',
         },
         props.className,
       )}
@@ -204,6 +206,33 @@ export const TwitterAuthIcon = memo(function TwitterAuthIcon(props: IconProps) {
       <path
         d="M9.99023 1.58203C10.422 1.58203 10.8538 1.74676 11.1832 2.07617L12.7055 3.59857H14.8069C15.7388 3.59857 16.494 4.35393 16.494 5.28568V7.38705L17.9433 8.83635C18.6022 9.4952 18.6022 10.5634 17.9433 11.2223L16.494 12.6716V14.846C16.494 15.7778 15.7387 16.5331 14.8069 16.5331H12.6325L11.1832 17.9824C10.8538 18.3118 10.422 18.4766 9.99023 18.4766C9.5584 18.4766 9.1266 18.3118 8.79725 17.9824L7.34793 16.5331H5.2466C4.31488 16.5331 3.55949 15.7778 3.55949 14.846V12.7447L2.03715 11.2223C1.37824 10.5634 1.37824 9.49521 2.03715 8.83635L3.55947 7.31395V5.2857C3.55947 4.35396 4.31488 3.59859 5.24658 3.59859H7.2749L8.79723 2.07619C9.12662 1.74678 9.5584 1.58203 9.9902 1.58203H9.99023ZM13.1167 8.28549C12.8887 8.05742 12.5189 8.05742 12.2909 8.28549L9.5032 11.0731L8.30125 9.91242C8.07156 9.69061 7.70691 9.69471 7.48227 9.91994L7.47549 9.92684L7.47529 9.92703C7.25127 10.159 7.25771 10.5287 7.48973 10.7528L9.07367 12.2824C9.14782 12.3542 9.23975 12.405 9.34002 12.4295C9.54357 12.498 9.77738 12.4511 9.93955 12.2889L13.1169 9.11156C13.345 8.8835 13.345 8.51373 13.1169 8.28568L13.1167 8.28549Z"
         fill="#2E60FF"
+      />
+    </svg>
+  )
+})
+
+export const EmailIcon = memo(function EmailIcon(
+  props: IconProps & { theme?: 'blue' | 'dark' | 'light' },
+) {
+  const theme = props.theme || 'blue'
+  return (
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M4.21046 5H19.7895C21.2593 5 22 5.68833 22 7.08833V16.9117C22 18.3 21.2593 19 19.7895 19H4.21046C2.74074 19 2 18.3 2 16.9117V7.08833C2 5.68833 2.74074 5 4.21046 5ZM11.9941 15.0333L19.9189 8.58167C20.2011 8.34833 20.4245 7.81167 20.0717 7.33333C19.7307 6.855 19.1076 6.84333 18.6961 7.135L11.9941 11.6383L5.30394 7.135C4.89242 6.84333 4.26925 6.855 3.92828 7.33333C3.57554 7.81167 3.79894 8.34833 4.08113 8.58167L11.9941 15.0333Z"
+        className={clsx('transition-all', {
+          'fill-black/40 hover:fill-black/80': theme === 'dark',
+          'dark:fill-white/20 hover:dark:fill-white/40': theme === 'dark',
+          'fill-white/40 hover:fill-white/80': theme === 'light',
+          'fill-dark-foreground-active': theme === 'blue',
+        })}
+        fill="currentColor"
       />
     </svg>
   )

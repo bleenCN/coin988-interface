@@ -1,9 +1,12 @@
 import ADs from './ads'
 import Categorys from './categorys'
+import Footer from './footer'
 import InfraAndTools from './Infra&tools'
 import NewTokens from './new-tokens'
+import News from './news'
 import Search from './search'
 import TwitterStars from './twitter-stars'
+import Welcome from './welcome'
 
 export default function Home() {
   return (
@@ -30,6 +33,20 @@ export default function Home() {
 
       <div className="container pt-10">
         <TwitterStars />
+      </div>
+
+      <div className="container pt-10">
+        <News />
+      </div>
+
+      <div>
+        <Welcome />
+      </div>
+
+      <div className="line h-px w-full bg-[#DDDFE7]" />
+
+      <div className="container">
+        <Footer />
       </div>
     </>
   )
