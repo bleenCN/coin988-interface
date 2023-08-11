@@ -1,8 +1,8 @@
 import { ExternalLink } from '@/components/external-link'
 import { Badge } from '@/components/ui/badge'
 
-import { fetchProjects } from './queries'
-import { getSocialLinkIcon } from './utils'
+import { fetchProjects } from '../queries'
+import { getSocialLinkIcon } from '../utils'
 
 export async function Projects({
   category,

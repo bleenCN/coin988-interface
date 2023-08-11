@@ -9,6 +9,7 @@ export default function Layout({
 }: {
   children: React.ReactNode
   featured: React.ReactNode
+  all: React.ReactNode
 }) {
   return (
     <>
@@ -16,6 +17,7 @@ export default function Layout({
         <Image src={banner} alt="" priority />
       </div>
       {routes.featured}
+      {routes.all}
       {children}
     </>
   )

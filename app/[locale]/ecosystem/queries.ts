@@ -3,7 +3,7 @@ import { gql } from 'graphql-request'
 import { RemoteProjectSchema } from '@/domain/projects/schema'
 import { gqlClient } from '@/lib/graphql-client'
 
-import { FeaturedProjectsTab } from '../types'
+import { FeaturedProjectsTab } from './types'
 
 const projectsQuery = gql`
   query Projects(
