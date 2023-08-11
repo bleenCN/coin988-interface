@@ -1,4 +1,5 @@
 import { Filter } from 'lucide-react'
+import { Suspense } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet'
@@ -7,10 +8,12 @@ import { CategoryFilters } from './category-filters'
 import { Projects } from './projects'
 import { StickyHeaderContainer } from './sticky-header-container'
 
-export default function Page({
-  searchParams,
+export function AllProjects({
+  category,
+  isParent,
 }: {
-  searchParams: { [key: string]: string | undefined }
+  category: string | undefined
+  isParent: boolean
 }) {
   return (
     <section className="mt-2.5">
@@ -26,7 +29,9 @@ export default function Page({
               </SheetTrigger>
               <SheetContent side="bottom" className="h-screen">
                 <SheetHeader className="mb-4 text-2xl font-semibold">Filters</SheetHeader>
-                <CategoryFilters />
+                <Suspense>
+                  <CategoryFilters />
+                </Suspense>
               </SheetContent>
             </Sheet>
           </div>
@@ -34,13 +39,14 @@ export default function Page({
       </StickyHeaderContainer>
       <div className="container items-start lg:grid lg:grid-cols-[390px,1fr] lg:gap-6">
         <div className="sticky top-36 hidden h-[calc(100vh-144px)] overflow-y-auto border-r py-4 lg:top-40 lg:block lg:h-[calc(100vh-160px)]">
-          <CategoryFilters />
+          <Suspense>
+            <CategoryFilters />
+          </Suspense>
         </div>
         <div className="grid grid-cols-2 gap-4 py-4 sm:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] sm:gap-6 sm:pt-8">
-          <Projects
-            category={searchParams.category}
-            isParent={searchParams.isParent === 'true'}
-          />
+          <Suspense>
+            <Projects category={category} isParent={isParent} />
+          </Suspense>
         </div>
       </div>
     </section>
