@@ -1,27 +1,19 @@
 import { Filter } from 'lucide-react'
-import Image from 'next/image'
 
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet'
-import banner from '@/public/ecosystem/banner.jpg'
 
 import { CategoryFilters } from './category-filters'
-import { FeaturedProjects } from './featured-projects'
 import { Projects } from './projects'
 import { StickyHeaderContainer } from './sticky-header-container'
-import { type FeaturedProjectsTab } from './types'
 
-export default function EcosystemPage({
+export default function Page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | undefined }
 }) {
   return (
     <>
-      <div className="container mt-4 lg:mt-8">
-        <Image src={banner} alt="" priority />
-      </div>
-      <FeaturedProjects tab={searchParams.tab as FeaturedProjectsTab} />
       <section className="mt-2.5">
         <StickyHeaderContainer>
           <h1 className="text-2xl font-semibold sm:text-[32px]">Ecosystem</h1>
