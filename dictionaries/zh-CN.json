@@ -16,6 +16,14 @@
     "latest": "最新",
     "back": "返回",
     "view": "前往",
-    "bookmark": "收藏"
+    "bookmark": "收藏",
+    "introduction": "项目介绍",
+    "highlight": "项目特点",
+    "team": "团队成员",
+    "stars": "风险评级",
+    "status": "验证状态",
+    "contract": "合约地址",
+    "audit": "合约审计",
+    "token": "代币"
   }
 }

@@ -15,6 +15,14 @@
     "latest": "Latest",
     "back": "Back",
     "view": "View",
-    "bookmark": "Add to Watchlist"
+    "bookmark": "Add to Watchlist",
+    "introduction": "Introduction",
+    "highlight": "Highlight",
+    "team": "Team",
+    "stars": "Risk Rating",
+    "status": "Verification Status",
+    "contract": "Contract",
+    "audit": "Audit",
+    "token": "Token"
   }
 }

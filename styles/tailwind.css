@@ -39,8 +39,8 @@
 
     --brand: 226 100% 59%;
 
-    --soft: 220, 30%, 91%;
-    --soft-foreground: 226, 8%, 65%, 1;
+    --soft: 220 30% 91%;
+    --soft-foreground: 226 8% 65%;
   }
 
   .dark {
@@ -87,5 +87,9 @@
 @layer utilities {
   .container {
     @apply sm:px-8 2xl:px-12;
+  }
+
+  .marker {
+    @apply before:mr-3 before:inline-block before:h-6 before:w-1.5 before:shrink-0 before:bg-brand;
   }
 }
