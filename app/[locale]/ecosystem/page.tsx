@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { Locale } from '@/i18n.config'
 import banner from '@/public/ecosystem/banner.jpg'
 
 import { AllProjects } from './all-projects.server'
@@ -10,6 +11,7 @@ export default function Page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | undefined }
+  params: { locale: Locale }
 }) {
   return (
     <>

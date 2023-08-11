@@ -58,7 +58,7 @@ export async function AllProjects({
   try {
     data = await gqlClient.request(query, variables)
   } catch (error) {
-    return <div>Error</div>
+    return <div className="container">Error</div>
   }
 
   const categoriesData = CategorysSchema.parse(data)

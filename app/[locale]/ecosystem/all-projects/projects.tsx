@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge'
 
 import { fetchProjects } from '../queries'
 import { getSocialLinkIcon } from '../utils'
+import { ProjectCard, PropagationStopper } from './project-card'
 
 export async function Projects({
   category,
@@ -29,7 +30,7 @@ export async function Projects({
   return (
     <>
       {projects.map((project) => (
-        <article key={project.id} className="flex flex-col rounded-xl border bg-card">
+        <ProjectCard key={project.id} projectId={project.id}>
           <div className="aspect-h-1 aspect-w-2 w-full overflow-hidden rounded-t-xl">
             <div
               className="bg-cover bg-no-repeat blur-lg"
@@ -47,15 +48,15 @@ export async function Projects({
                 <Badge key={category.id}>{category.name}</Badge>
               ))}
             </div>
-            <div className="mt-auto flex items-center gap-3 py-[22px]">
+            <PropagationStopper className="mt-auto flex items-center gap-3 py-[22px]">
               {project.links.map(({ brand, url }) => (
                 <ExternalLink key={brand} href={url}>
                   {getSocialLinkIcon(brand)}
                 </ExternalLink>
               ))}
-            </div>
+            </PropagationStopper>
           </div>
-        </article>
+        </ProjectCard>
       ))}
     </>
   )

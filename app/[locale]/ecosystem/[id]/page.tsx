@@ -53,7 +53,7 @@ export default async function Page({
               <Badge key={category.id}>{category.name}</Badge>
             ))}
           </div>
-          <p className="mt-4 line-clamp-3 break-all text-sm">{project.description}</p>
+          <p className="mt-4 line-clamp-3 break-words text-sm">{project.description}</p>
           <div className="mb-6 mt-8 flex items-center gap-3">
             {project.links.map((link) => (
               <ExternalLink key={link.brand} href={link.url}>
