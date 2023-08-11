@@ -29,7 +29,7 @@ export default function EcosystemPage({
             <div className="lg:hidden">
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button variant="outline" size="icon">
+                  <Button variant="outline-secondary" size="icon">
                     <Filter />
                   </Button>
                 </SheetTrigger>

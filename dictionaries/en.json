@@ -1,5 +1,4 @@
 {
-  "greeting": "Welcome",
   "theme-toggle": {
     "light": "Light",
     "dark": "Dark",
@@ -13,6 +12,9 @@
   },
   "ecosystem": {
     "hot": "Hot",
-    "latest": "Latest"
+    "latest": "Latest",
+    "back": "Back",
+    "view": "View",
+    "bookmark": "Add to Watchlist"
   }
 }

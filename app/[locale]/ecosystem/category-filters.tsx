@@ -51,6 +51,7 @@ export async function CategoryFilters() {
   try {
     data = await gqlClient.request(query, variables)
   } catch (error) {
+    console.log({ error })
     return <div>Error</div>
   }
 

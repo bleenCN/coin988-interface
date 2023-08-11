@@ -1,95 +1,16 @@
-import { gql } from 'graphql-request'
 import Image from 'next/image'
-import * as z from 'zod'
 
 import { ExternalLink } from '@/components/external-link'
-import {
-  DiscordIcon,
-  GithubIcon,
-  GlobeIcon,
-  TelegramIcon,
-  TwitterIcon,
-} from '@/components/ui/icons'
-import { gqlClient } from '@/lib/graphql-client'
 
-const ProjectSchema = z
-  .object({
-    id: z.string(),
-    name: z.string(),
-    imageUrl: z.string(),
-    describe: z.string(),
-    website: z.string().optional(),
-    telegram: z.string().optional(),
-    github: z.string().optional(),
-    twitter: z.string().optional(),
-    discord: z.string().optional(),
-  })
-  .transform((project) => {
-    const { id, name, imageUrl, describe, website, telegram, github, twitter, discord } =
-      project
-
-    return {
-      id,
-      name,
-      imageUrl,
-      description: describe,
-      links: [
-        { brand: 'website', url: website },
-        { brand: 'twitter', url: twitter },
-        { brand: 'discord', url: discord },
-        { brand: 'telegram', url: telegram },
-        { brand: 'github', url: github },
-      ].filter((linkObj) => Boolean(linkObj.url)),
-    }
-  })
-
-const ProjectsSchema = z.object({
-  data: z.object({
-    records: z.array(ProjectSchema),
-  }),
-})
-
-const query = gql`
-  query Projects(
-    $paginationInputArgs: PaginationInputArgs
-    $projectInputArgs: ProjectInputArgs
-  ) {
-    data: queryProjectPage(
-      paginationInputArgs: $paginationInputArgs
-      projectInputArgs: $projectInputArgs
-    ) {
-      records {
-        id
-        name
-        imageUrl
-        describe
-        website
-        twitter
-        discord
-        telegram
-        github
-      }
-    }
-  }
-`
+import { fetchFeaturedProjects } from '../queries'
+import { getSocialLinkIcon } from '../utils'
+import { NavLink } from './nav-link'
 
 export async function ProjectsList({ tab = 'hot' }: { tab?: 'hot' | 'latest' }) {
-  const variables = {
-    projectInputArgs: {
-      chainName: 'BASE',
-      isHot: tab === 'hot',
-      isNew: tab === 'latest',
-    },
-    paginationInputArgs: {
-      current: 0,
-      pageSize: 8,
-    },
-  }
-
-  let data
+  let projects
 
   try {
-    data = await gqlClient.request(query, variables)
+    projects = await fetchFeaturedProjects(tab)
   } catch (error) {
     return (
       <div className="flex h-[300px] items-center justify-center rounded-xl bg-card">
@@ -97,16 +18,6 @@ export async function ProjectsList({ tab = 'hot' }: { tab?: 'hot' | 'latest' }) 
       </div>
     )
   }
-
-  const parsedProjects = ProjectsSchema.safeParse(data)
-
-  if (!parsedProjects.success) {
-    return <div>Nothing here</div>
-  }
-
-  const {
-    data: { records: projects },
-  } = parsedProjects.data
 
   if (projects.length === 0) {
     return <div>Nothing here</div>
@@ -118,9 +29,9 @@ export async function ProjectsList({ tab = 'hot' }: { tab?: 'hot' | 'latest' }) 
         {projects.map((project) => (
           <article
             key={project.id}
-            className="w-10/12 shrink-0 rounded-xl bg-card p-4 sm:w-full sm:p-6"
+            className="group w-10/12 shrink-0 rounded-xl bg-card p-4 sm:w-full sm:p-6"
           >
-            <header className="flex items-center">
+            <div className="flex items-center">
               <Image
                 src={project.imageUrl}
                 alt=""
@@ -141,7 +52,10 @@ export async function ProjectsList({ tab = 'hot' }: { tab?: 'hot' | 'latest' }) 
                   ))}
                 </div>
               </div>
-            </header>
+              <div className="ml-auto duration-150 lg:opacity-0 lg:group-hover:opacity-100">
+                <NavLink href={`/ecosystem/${project.id}`} />
+              </div>
+            </div>
             <p className="mt-4 line-clamp-3 text-sm text-[#9EA1AC]">
               {project.description}
             </p>
@@ -150,14 +64,4 @@ export async function ProjectsList({ tab = 'hot' }: { tab?: 'hot' | 'latest' }) 
       </div>
     </div>
   )
-}
-
-function getSocialLinkIcon(key: string) {
-  return {
-    website: <GlobeIcon className="text-[#9EA1AC]" />,
-    twitter: <TwitterIcon className="text-[#9EA1AC]" />,
-    discord: <DiscordIcon className="text-[#9EA1AC]" />,
-    telegram: <TelegramIcon className="text-[#9EA1AC]" />,
-    github: <GithubIcon className="text-[#9EA1AC]" width={16} height={16} />,
-  }[key]
 }

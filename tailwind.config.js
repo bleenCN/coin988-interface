@@ -59,6 +59,7 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        'card-hard': 'hsl(var(--card-hard))',
       },
       keyframes: {
         'accordion-down': {

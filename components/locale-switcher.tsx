@@ -22,7 +22,7 @@ export function LocaleSwitcher() {
 
   function handleLocaleSwitch(locale: string) {
     startTransition(() => {
-      router.replace(pathname, { locale })
+      router.replace(pathname, { locale, scroll: false })
     })
   }
 

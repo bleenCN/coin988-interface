@@ -356,3 +356,25 @@ export function ToolsIcon(props: IconProps) {
     </svg>
   )
 }
+
+export function CircleBackIcon(props: IconProps) {
+  return (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <circle cx="16" cy="16" r="15.5" stroke="currentColor" />
+      <path
+        d="M22.6665 16L9.33317 16M9.33317 16L15.1665 21.8333M9.33317 16L15.1665 10.1667"
+        stroke="#2E60FF"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
