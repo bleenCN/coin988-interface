@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Image from 'next/image'
 import { memo } from 'react'
 
@@ -109,7 +110,13 @@ const CategoryTitle = memo(function Category(props: CategoryProps) {
 
 const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project }) {
   return (
-    <div className="flex cursor-pointer items-center gap-4 overflow-hidden rounded-xl bg-light-foreground p-4 transition-all hover:bg-light-foreground-hover dark:bg-dark-foreground">
+    <div
+      className={clsx(
+        'flex cursor-pointer items-center gap-4 overflow-hidden rounded-xl p-4 transition-all',
+        'bg-light-foreground hover:bg-light-foreground-hover',
+        'dark:bg-dark-background dark:hover:bg-dark-foreground',
+      )}
+    >
       <Image
         src={project.url}
         alt={project.name}

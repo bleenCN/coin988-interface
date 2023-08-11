@@ -114,7 +114,7 @@ const ToolBoard = memo(function ToolBoard({ tool }: { tool: Tool }) {
     <div
       className={clsx(
         'grid place-items-center text-center',
-        'bg-light-foreground hover:bg-light-foreground-hover',
+        'bg-light-foreground hover:bg-light-foreground-hover dark:bg-dark-background',
         'rounded-2xl xl:rounded-3xl',
         'cursor-pointer transition-all',
         'pb-2 pt-6 lg:pb-4 lg:pt-8 xl:pb-8 xl:pt-12',
@@ -130,7 +130,7 @@ const ToolBoard = memo(function ToolBoard({ tool }: { tool: Tool }) {
       <div className={clsx('text-sm font-semibold lg:text-lg', 'mt-2 lg:mt-6')}>
         {tool.name}
       </div>
-      <div className={clsx('text-xs font-light text-black/40 lg:text-base', 'xl:mt-1')}>
+      <div className={clsx('text-xs font-light opacity-40 lg:text-base', 'xl:mt-1')}>
         {tool.type}
       </div>
     </div>

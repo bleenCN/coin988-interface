@@ -43,7 +43,7 @@ export default function Home() {
         <Welcome />
       </div>
 
-      <div className="line h-px w-full bg-[#DDDFE7]" />
+      <div className="line h-px w-full bg-[#DDDFE7] dark:bg-dark-foreground" />
 
       <div className="container">
         <Footer />

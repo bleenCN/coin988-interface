@@ -31,7 +31,7 @@ const Footer = memo(function Footer() {
         </Round>
       </div>
 
-      <div className="pb-10 pt-20 text-center text-xs text-black/50">
+      <div className="pb-10 pt-20 text-center text-xs opacity-50">
         <div>{t('statement')}</div>
         <div className="mt-4">{t('copy')}</div>
       </div>
@@ -41,7 +41,7 @@ const Footer = memo(function Footer() {
 
 const Round = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="cursor-pointer rounded-full bg-light-foreground p-2 hover:bg-light-foreground-hover md:p-4">
+    <div className="cursor-pointer rounded-full bg-light-foreground p-2 hover:bg-light-foreground-hover dark:bg-dark-background md:p-4">
       {children}
     </div>
   )

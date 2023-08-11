@@ -177,9 +177,9 @@ const NewsCard = memo(function NewsCard({ news }: { news: NewsInfo }) {
     <div className="overflow-hidden rounded-3xl">
       <Image src={news.imgUrl} alt={''} width={420} height={210} />
 
-      <div className="rounded-b-3xl border border-t-0 border-[#DEE1EA] px-3 pb-4 pt-2">
+      <div className="rounded-b-3xl border border-t-0 border-[#DEE1EA] px-3 pb-4 pt-2 dark:border-dark-foreground">
         <h1 className="mt-2 font-semibold">{news.title}</h1>
-        <div className="mt-2 line-clamp-3 h-[4.5em] text-sm text-black/50">
+        <div className="mt-2 line-clamp-3 h-[4.5em] text-sm opacity-50">
           {news.subtitle}
         </div>
 

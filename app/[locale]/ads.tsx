@@ -34,7 +34,6 @@ const ADs = memo(function ADd() {
       loop
       breakpoints={{
         768: {
-          spaceBetween: 24,
           slidesPerView: 2,
         },
         1024: {
@@ -52,13 +51,15 @@ const ADs = memo(function ADd() {
       {ads.concat(ads).map((ad, index) => {
         return (
           <SwiperSlide key={index}>
-            <Image
-              src={ad.imgsrc}
-              alt={ad.alt}
-              width={336}
-              height={160}
-              className="h-auto w-auto cursor-pointer px-1"
-            />
+            <div className="flex justify-center">
+              <Image
+                src={ad.imgsrc}
+                alt={ad.alt}
+                width={336}
+                height={160}
+                className="h-auto w-auto cursor-pointer px-1 lg:px-2"
+              />
+            </div>
           </SwiperSlide>
         )
       })}

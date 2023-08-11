@@ -235,7 +235,7 @@ const UserSwiper = memo(function UserSwiper({
               />
             </div>
 
-            <div className="text-xs text-black/50">{user.category}</div>
+            <div className="text-xs opacity-50">{user.category}</div>
           </div>
         ))}
       </div>

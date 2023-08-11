@@ -32,7 +32,7 @@ const Welcome = memo(function Welcome() {
       />
 
       <div className="mt-8 font-semibold md:text-2xl xl:text-3xl">{t('title')}</div>
-      <div className="container mt-2 text-center text-sm text-black/50 md:text-xl xl:text-2xl">
+      <div className="container mt-2 text-center text-sm opacity-50 md:text-xl xl:text-2xl">
         {t('subtitle')}
       </div>
 
@@ -74,11 +74,11 @@ const CountCard = memo(function CountCard(props: CountCardProps) {
       style={getBgColor(props.bgColor)}
       className={clsx(
         'flex h-16 w-28 flex-col justify-center text-center md:mx-4 xl:h-36 xl:w-80',
-        'rounded-lg border border-[#DEE1EA] lg:rounded-xl',
+        'rounded-lg border border-[#DEE1EA] dark:border-dark-foreground lg:rounded-xl',
       )}
     >
       <div className="font-semibold xl:text-3xl">{props.count.toLocaleString()}</div>
-      <div className="text-xs text-black/50 xl:mt-2 xl:text-lg">{props.category}</div>
+      <div className="text-xs opacity-50 xl:mt-2 xl:text-lg">{props.category}</div>
     </div>
   )
 })
