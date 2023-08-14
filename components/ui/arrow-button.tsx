@@ -31,7 +31,7 @@ const ArrowButton = memo(function ArrowButton({
         { 'p-2': size === 'normal', 'p-3.5': size === 'lg' },
         { ' bg-black/50': type === 'flat', border: type === 'outline' },
         {
-          'text-white': theme === 'light',
+          'border-white/40 text-white': theme === 'light',
           'border-dark-foreground text-dark-foreground hover:border-dark-foreground-active hover:text-dark-foreground-active':
             theme === 'dark',
         },

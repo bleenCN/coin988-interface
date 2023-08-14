@@ -211,7 +211,7 @@ const UserSwiper = memo(function UserSwiper({
       <div className="flex" ref={containerRef}>
         {users.concat(users).map((user, index) => (
           <div
-            className="m-4 shrink-0 cursor-pointer text-center lg:mx-10 lg:my-6"
+            className="group m-4 shrink-0 cursor-pointer text-center lg:mx-10 lg:my-6"
             key={index}
           >
             <Image
@@ -221,7 +221,7 @@ const UserSwiper = memo(function UserSwiper({
               height={80}
               className={clsx(
                 'mx-auto h-12 w-12 overflow-hidden rounded-full transition-all',
-                'border-2 border-transparent hover:border-dark-foreground-active lg:h-20 lg:w-20',
+                'border-2 border-transparent group-hover:border-dark-foreground-active lg:h-20 lg:w-20',
               )}
             />
 
