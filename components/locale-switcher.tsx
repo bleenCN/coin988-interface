@@ -1,5 +1,6 @@
 'use client'
 
+import { useSearchParams } from 'next/navigation'
 import { useLocale } from 'next-intl'
 import { usePathname, useRouter } from 'next-intl/client'
 import * as React from 'react'
@@ -18,11 +19,15 @@ export function LocaleSwitcher() {
   const locale = useLocale()
   const router = useRouter()
   const pathname = usePathname()
+  const searchParams = useSearchParams()
   const [isPending, startTransition] = React.useTransition()
 
   function handleLocaleSwitch(locale: string) {
+    const maybeQueryString = searchParams.toString()
+    const queryString = maybeQueryString.length > 0 ? `?${maybeQueryString}` : ''
+
     startTransition(() => {
-      router.replace(pathname, { locale, scroll: false })
+      router.replace(pathname + queryString, { locale, scroll: false })
     })
   }
 
