@@ -2,17 +2,20 @@
 import { useQuery } from '@tanstack/react-query'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { memo } from 'react'
+import { memo, useCallback, useState } from 'react'
 
 import withLink from '@/components/hocs/with-link'
 import {
+  ArrowIcon,
   DiscordIcon,
   LayeredIcon,
+  PieIcon,
   TwitterIcon,
   WebSiteIcon,
 } from '@/components/ui/icons.b'
 import RoundButton from '@/components/ui/round-button'
 import Title from '@/components/ui/Title'
+import { useLessThanWidth } from '@/hooks/useBreakPoint'
 import {
   PaginationInputArgs,
   ProjectCategoryFragment,
@@ -28,12 +31,6 @@ interface Project {
   twitter?: string
   discord?: string
   website?: string
-}
-
-interface CategoryProps {
-  icon: JSX.Element
-  category: string
-  more?: string
 }
 
 const json = {
@@ -114,73 +111,144 @@ const Categories = memo(function Categories() {
     { enabled: !!defiId },
   )
 
+  const isMobile = useLessThanWidth(768)
+  const [activeCategoryName, setActiveCategoryName] = useState(nameOfCategories.defi)
+  const changeFlodState = useCallback(
+    (activeCategoryName: string, categoryName: string) => {
+      let _categoryName = ''
+      if (activeCategoryName !== categoryName) _categoryName = categoryName
+      setActiveCategoryName(_categoryName)
+    },
+    [],
+  )
+
   return (
     <div>
       <Title>{t('title')}</Title>
 
       <div className="grid grid-cols-1 gap-6 pt-8 md:grid-cols-2">
         <Category
-          category={nameOfCategories.defi}
+          icon={<LayeredIcon />}
+          categoryName={nameOfCategories.defi}
           projects={defiProjects?.records as Project[]}
           isLoading={defiIsLoading}
+          isMobile={isMobile}
+          isFloded={activeCategoryName !== nameOfCategories.defi}
+          changeFlodState={() =>
+            changeFlodState(activeCategoryName, nameOfCategories.defi)
+          }
         />
         <Category
-          category={nameOfCategories.nft}
+          icon={<PieIcon />}
+          categoryName={nameOfCategories.nft}
           projects={nftProjects?.records as Project[]}
           isLoading={nftIsLoading}
+          isMobile={isMobile}
+          isFloded={activeCategoryName !== nameOfCategories.nft}
+          changeFlodState={() =>
+            changeFlodState(activeCategoryName, nameOfCategories.nft)
+          }
         />
         <Category
-          category={nameOfCategories.game}
+          icon={<LayeredIcon />}
+          categoryName={nameOfCategories.game}
           projects={gameProjects?.records as Project[]}
           isLoading={gameIsLoading}
+          isMobile={isMobile}
+          isFloded={activeCategoryName !== nameOfCategories.game}
+          changeFlodState={() =>
+            changeFlodState(activeCategoryName, nameOfCategories.game)
+          }
         />
         <Category
-          category={nameOfCategories.bridges}
+          icon={<PieIcon />}
+          categoryName={nameOfCategories.bridges}
           projects={bridgesProjects?.records as Project[]}
           isLoading={BridgesIsLoading}
+          isMobile={isMobile}
+          isFloded={activeCategoryName !== nameOfCategories.bridges}
+          changeFlodState={() =>
+            changeFlodState(activeCategoryName, nameOfCategories.bridges)
+          }
         />
       </div>
     </div>
   )
 })
 
-const Category = memo(function Category({
-  projects,
-  category,
-  isLoading,
-}: {
+interface CategoryProps {
   projects: Project[] | undefined
-  category: string
+  categoryName: string
   isLoading: boolean
-}) {
-  const contents = isLoading ? (
+  isFloded: boolean
+  isMobile: boolean
+  icon: JSX.Element
+  changeFlodState: () => void
+}
+
+const Category = memo(function Category(props: CategoryProps) {
+  const numOfProjectsToSHow = props.isMobile ? 4 : 6
+  const showProjects = props.projects?.slice(0, numOfProjectsToSHow)
+
+  const contents = props.isLoading ? (
     <Loading />
-  ) : projects?.length ? (
+  ) : !showProjects?.length ? (
+    <NoData />
+  ) : (
     <div className="grid grid-cols-1 gap-3 pt-6 xl:grid-cols-2">
-      {projects.map((project, index) => (
+      {showProjects.map((project, index) => (
         <ProjectBoard key={index} project={project} />
       ))}
+      {props.isMobile && <MoreBoard />}
     </div>
-  ) : (
-    <NoData />
   )
 
   return (
     <div>
-      <CategoryTitle icon={<LayeredIcon />} category={category} />
-      {contents}
+      <CategoryTitle
+        isMobile={props.isMobile}
+        isFloded={props.isFloded}
+        icon={props.icon}
+        category={props.categoryName}
+        changeFlodState={props.changeFlodState}
+      />
+      <div
+        className={clsx(
+          'grid overflow-hidden transition-all',
+          props.isFloded && props.isMobile ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]',
+        )}
+      >
+        <div className="min-h-0">{contents}</div>
+      </div>
     </div>
   )
 })
 
-const CategoryTitle = memo(function Category(props: CategoryProps) {
+interface CategoryTitleProps {
+  icon: JSX.Element
+  category: string
+  more?: string
+  isFloded: boolean
+  isMobile: boolean
+  changeFlodState: () => void
+}
+
+const CategoryTitle = memo(function Category(props: CategoryTitleProps) {
   const t = getT(json)
 
   return (
-    <div className="flex h-20 items-center rounded-xl bg-dark-background py-2 pl-3 pr-6 text-white lg:h-[90px]">
+    <div className="flex h-20 select-none items-center rounded-xl bg-dark-background py-2 pl-3 pr-6 text-white lg:h-[90px]">
       <span className="mr-5">{props.icon}</span>
       <span className="flex-1 font-semibold lg:text-2xl">{props.category}</span>
-      <RoundButton className="text-sm">{t('more')}</RoundButton>
+      {props.isMobile ? (
+        <ArrowIcon
+          className={clsx('transition-all', { 'rotate-90': !props.isFloded })}
+          tabIndex={0}
+          onClick={props.changeFlodState}
+        />
+      ) : (
+        <RoundButton className="text-sm">{t('more')}</RoundButton>
+      )}
     </div>
   )
 })
@@ -194,7 +262,7 @@ const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project 
     <div
       className={clsx(
         'flex cursor-pointer items-center gap-4 overflow-hidden rounded-xl p-4 transition-all',
-        'bg-light-foreground hover:bg-light-foreground-hover',
+        'min-h-0 bg-light-foreground hover:bg-light-foreground-hover',
         'dark:bg-dark-background dark:hover:bg-dark-foreground',
       )}
     >
@@ -211,32 +279,36 @@ const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project 
       <div className="flex gap-3 text-xl">
         {project.website && (
           <div title={project.website}>
-            <WebSiteIconWithLink
-              href={project.website}
-              tabIndex={0}
-              className="cursor-pointer"
-            />
+            <WebSiteIconWithLink href={project.website} className="cursor-pointer" />
           </div>
         )}
         {project.twitter && (
           <div title="twitter">
-            <TwitterIconWithLink
-              href={project.twitter}
-              tabIndex={0}
-              className="cursor-pointer"
-            />
+            <TwitterIconWithLink href={project.twitter} className="cursor-pointer" />
           </div>
         )}
         {project.discord && (
           <div title="discord">
-            <DiscordIconWithLink
-              href={project.discord}
-              tabIndex={0}
-              className="cursor-pointer"
-            />
+            <DiscordIconWithLink href={project.discord} className="cursor-pointer" />
           </div>
         )}
       </div>
+    </div>
+  )
+})
+
+const MoreBoard = memo(function MoreBoard() {
+  const t = getT(json)
+  return (
+    <div
+      className={clsx(
+        'flex cursor-pointer items-center gap-4 overflow-hidden rounded-xl p-4 transition-all',
+        'min-h-0 bg-light-foreground hover:bg-light-foreground-hover',
+        'dark:bg-dark-background dark:hover:bg-dark-foreground',
+        'grid place-items-center',
+      )}
+    >
+      {t('more')}
     </div>
   )
 })
