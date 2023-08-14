@@ -220,8 +220,8 @@ const UserSwiper = memo(function UserSwiper({
               width={80}
               height={80}
               className={clsx(
-                'mx-auto h-12 w-12 overflow-hidden rounded-full',
-                'lg:h-20 lg:w-20',
+                'mx-auto h-12 w-12 overflow-hidden rounded-full transition-all',
+                'border-2 border-transparent hover:border-dark-foreground-active lg:h-20 lg:w-20',
               )}
             />
 

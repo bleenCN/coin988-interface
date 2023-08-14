@@ -137,9 +137,9 @@ const TokenBoard = memo(function TokenBoard(props: {
 
       <div
         className={clsx(
-          'm-1 hidden rounded-xl bg-dark-foreground p-2 text-white',
+          'm-1 hidden rounded-xl bg-dark-foreground p-2 text-white hover:bg-dark-foreground-hover',
           'group cursor-pointer transition-all lg:block xl:rounded-[20px]  xl:p-4 xl:pb-2',
-          { 'bg-dark-foreground-active': !!props.active },
+          { 'bg-dark-foreground-active hover:bg-dark-foreground-active': !!props.active },
         )}
         tabIndex={0}
       >

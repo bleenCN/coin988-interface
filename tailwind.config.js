@@ -16,7 +16,8 @@ module.exports = {
       },
       colors: {
         'dark-background': '#292A2D',
-        'dark-foreground': '#3E3F44',
+        'dark-foreground': '#343538',
+        'dark-foreground-hover': '#3E3F44',
         'dark-foreground-active': '#2E60FF',
         'light-foreground': '#F6F9FF',
         'light-foreground-hover': '#DCE3F1',
