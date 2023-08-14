@@ -5,11 +5,12 @@ import { useInView } from 'react-intersection-observer'
 export function StickyHeaderContainer({ children }: { children: React.ReactNode }) {
   const { ref, inView } = useInView({
     threshold: 1,
+    rootMargin: '64px 0px 0px 0px',
   })
 
   return (
     <>
-      <div ref={ref} />
+      <div className="h-px" ref={ref} />
       <div
         className={
           'sticky top-16 z-10 border-b lg:top-20' +
