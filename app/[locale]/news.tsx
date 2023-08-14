@@ -174,7 +174,7 @@ const News = memo(function News() {
 
 const NewsCard = memo(function NewsCard({ news }: { news: NewsInfo }) {
   return (
-    <div className="overflow-hidden rounded-3xl">
+    <div className="cursor-pointer overflow-hidden rounded-3xl shadow transition-all hover:-translate-y-1 hover:shadow-lg">
       <Image src={news.imgUrl} alt={''} width={420} height={210} />
 
       <div className="rounded-b-3xl border border-t-0 border-[#DEE1EA] px-3 pb-4 pt-2 dark:border-dark-foreground">

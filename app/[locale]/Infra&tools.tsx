@@ -118,6 +118,7 @@ const ToolBoard = memo(function ToolBoard({ tool }: { tool: Tool }) {
         'rounded-2xl xl:rounded-3xl',
         'cursor-pointer transition-all',
         'pb-2 pt-6 lg:pb-4 lg:pt-8 xl:pb-8 xl:pt-12',
+        'shadow hover:-translate-y-1 hover:shadow-lg',
       )}
     >
       <Image
