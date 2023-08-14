@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import * as React from 'react'
+import { Suspense } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { Button } from '@/components/ui/button'
@@ -63,7 +63,9 @@ export default function PageHeader({ locale }: { locale: string }) {
             </div>
             <ThemeToggle />
             <SlashIcon />
-            <LocaleSwitcher />
+            <Suspense>
+              <LocaleSwitcher />
+            </Suspense>
             <MobileMenu />
           </div>
         </div>
