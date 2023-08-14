@@ -5,6 +5,17 @@ const nextConfig = {
     config.externals.push('encoding')
     return config
   },
+  experimental: {
+    serverActions: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
   output: 'standalone',
 }
 

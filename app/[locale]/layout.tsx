@@ -5,7 +5,11 @@ import { notFound } from 'next/navigation'
 import { LogoSvg } from '@/components/logo'
 import { PageBackground } from '@/components/page-background'
 import PageHeader from '@/components/page-header'
-import { I18nProvider, ThemeProvider } from '@/components/providers'
+import {
+  I18nProvider,
+  TanstackQueryClientProvider,
+  ThemeProvider,
+} from '@/components/providers'
 import { getDictionary } from '@/get-dictionary'
 import { i18n, type Locale } from '@/i18n.config'
 
@@ -47,9 +51,11 @@ export default async function Layout({
         <PageBackground />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <I18nProvider locale={locale} messages={dictionary}>
-            <PageHeader locale={locale} />
-            {children}
-            <LogoSvg />
+            <TanstackQueryClientProvider>
+              <PageHeader locale={locale} />
+              {children}
+              <LogoSvg />
+            </TanstackQueryClientProvider>
           </I18nProvider>
         </ThemeProvider>
       </body>

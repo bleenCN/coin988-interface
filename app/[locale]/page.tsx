@@ -1,5 +1,5 @@
 import ADs from './ads'
-import Categorys from './categorys'
+import Categories from './categories'
 import Footer from './footer'
 import InfraAndTools from './Infra&tools'
 import NewTokens from './new-tokens'
@@ -20,7 +20,7 @@ export default function Home() {
       </div>
 
       <div className="container pt-10">
-        <Categorys />
+        <Categories />
       </div>
 
       <div className="container pt-10">
