@@ -33,6 +33,7 @@ export default function PageHeader({ locale }: { locale: string }) {
       >
         <div className="container flex h-16 items-center lg:h-20">
           <Logo locale={locale} />
+          <span className="ml-2 text-2xl font-semibold text-brand">BASE</span>
           <div className="ml-[60px] hidden lg:block">
             <TopNav />
           </div>
