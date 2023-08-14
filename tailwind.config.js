@@ -11,6 +11,9 @@ module.exports = {
       center: true,
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+      },
       colors: {
         'dark-background': '#292A2D',
         'dark-foreground': '#3E3F44',

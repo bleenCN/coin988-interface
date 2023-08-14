@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import { notFound } from 'next/navigation'
 
 import { LogoSvg } from '@/components/logo'
@@ -17,6 +18,12 @@ export const metadata: Metadata = {
   description: 'The best web3 projects aggregator',
 }
 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
 export default async function Layout({
   children,
   params: { locale },
@@ -32,7 +39,7 @@ export default async function Layout({
   }
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg" />
       </head>
