@@ -2,6 +2,7 @@
 import { useQuery } from '@tanstack/react-query'
 import clsx from 'clsx'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { memo, useCallback, useState } from 'react'
 
 import withLink from '@/components/hocs/with-link'
@@ -26,6 +27,7 @@ import { getT } from '@/lib/utils'
 import { fetchCategories, fetchProjectPage } from './queries'
 
 interface Project {
+  id: string
   name: string
   logo: string
   twitter?: string
@@ -130,6 +132,7 @@ const Categories = memo(function Categories() {
         <Category
           icon={<LayeredIcon />}
           categoryName={nameOfCategories.defi}
+          categoryId={defiId as string}
           projects={defiProjects?.records as Project[]}
           isLoading={defiIsLoading}
           isMobile={isMobile}
@@ -141,6 +144,7 @@ const Categories = memo(function Categories() {
         <Category
           icon={<PieIcon />}
           categoryName={nameOfCategories.nft}
+          categoryId={NftId as string}
           projects={nftProjects?.records as Project[]}
           isLoading={nftIsLoading}
           isMobile={isMobile}
@@ -152,6 +156,7 @@ const Categories = memo(function Categories() {
         <Category
           icon={<LayeredIcon />}
           categoryName={nameOfCategories.game}
+          categoryId={gameId as string}
           projects={gameProjects?.records as Project[]}
           isLoading={gameIsLoading}
           isMobile={isMobile}
@@ -163,6 +168,7 @@ const Categories = memo(function Categories() {
         <Category
           icon={<PieIcon />}
           categoryName={nameOfCategories.bridges}
+          categoryId={bridgesId as string}
           projects={bridgesProjects?.records as Project[]}
           isLoading={BridgesIsLoading}
           isMobile={isMobile}
@@ -179,6 +185,7 @@ const Categories = memo(function Categories() {
 interface CategoryProps {
   projects: Project[] | undefined
   categoryName: string
+  categoryId: string | undefined
   isLoading: boolean
   isFloded: boolean
   isMobile: boolean
@@ -190,6 +197,11 @@ const Category = memo(function Category(props: CategoryProps) {
   const numOfProjectsToSHow = props.isMobile ? 4 : 6
   const showProjects = props.projects?.slice(0, numOfProjectsToSHow)
 
+  const router = useRouter()
+  const moreBtnClickHandler = useCallback(() => {
+    router.push(`/ecosystem?category=${props.categoryId}&isParent=true`)
+  }, [props.categoryId, router])
+
   const contents = props.isLoading ? (
     <Loading />
   ) : !showProjects?.length ? (
@@ -199,7 +211,7 @@ const Category = memo(function Category(props: CategoryProps) {
       {showProjects.map((project, index) => (
         <ProjectBoard key={index} project={project} />
       ))}
-      {props.isMobile && <MoreBoard />}
+      {props.isMobile && <MoreBoard onClick={moreBtnClickHandler} />}
     </div>
   )
 
@@ -209,8 +221,9 @@ const Category = memo(function Category(props: CategoryProps) {
         isMobile={props.isMobile}
         isFloded={props.isFloded}
         icon={props.icon}
-        category={props.categoryName}
+        categoryName={props.categoryName}
         changeFlodState={props.changeFlodState}
+        onMoreBtnClick={moreBtnClickHandler}
       />
       <div
         className={clsx(
@@ -226,10 +239,11 @@ const Category = memo(function Category(props: CategoryProps) {
 
 interface CategoryTitleProps {
   icon: JSX.Element
-  category: string
+  categoryName: string
   more?: string
   isFloded: boolean
   isMobile: boolean
+  onMoreBtnClick: () => void
   changeFlodState: () => void
 }
 
@@ -237,17 +251,24 @@ const CategoryTitle = memo(function Category(props: CategoryTitleProps) {
   const t = getT(json)
 
   return (
-    <div className="flex h-20 select-none items-center rounded-xl bg-dark-background py-2 pl-3 pr-6 text-white lg:h-[90px]">
+    <div
+      onClick={props.changeFlodState}
+      className="flex h-20 select-none items-center rounded-xl bg-dark-background py-2 pl-3 pr-6 text-white lg:h-[90px]"
+    >
       <span className="mr-5">{props.icon}</span>
-      <span className="flex-1 font-semibold lg:text-2xl">{props.category}</span>
+      <span className="flex-1 font-semibold lg:text-2xl">{props.categoryName}</span>
       {props.isMobile ? (
         <ArrowIcon
-          className={clsx('transition-all', { 'rotate-90': !props.isFloded })}
+          className={clsx(
+            'transition-all',
+            props.isFloded ? 'rotate-90' : 'rotate-[270deg]',
+          )}
           tabIndex={0}
-          onClick={props.changeFlodState}
         />
       ) : (
-        <RoundButton className="text-sm">{t('more')}</RoundButton>
+        <div onClick={props.onMoreBtnClick}>
+          <RoundButton className="text-sm">{t('more')}</RoundButton>
+        </div>
       )}
     </div>
   )
@@ -258,6 +279,12 @@ const DiscordIconWithLink = withLink(DiscordIcon)
 const WebSiteIconWithLink = withLink(WebSiteIcon)
 
 const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project }) {
+  const router = useRouter()
+
+  const boardClickHandler = useCallback(() => {
+    router.push(`/ecosystem/${project.id}`)
+  }, [project.id, router])
+
   return (
     <div
       className={clsx(
@@ -265,6 +292,7 @@ const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project 
         'min-h-0 bg-light-foreground hover:bg-light-foreground-hover',
         'dark:bg-dark-background dark:hover:bg-dark-foreground',
       )}
+      onClick={boardClickHandler}
     >
       <Image
         src={project.logo}
@@ -297,10 +325,11 @@ const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project 
   )
 })
 
-const MoreBoard = memo(function MoreBoard() {
+const MoreBoard = memo(function MoreBoard(props: React.ComponentProps<'div'>) {
   const t = getT(json)
   return (
     <div
+      {...props}
       className={clsx(
         'flex cursor-pointer items-center gap-4 overflow-hidden rounded-xl p-4 transition-all',
         'min-h-0 bg-light-foreground hover:bg-light-foreground-hover',
