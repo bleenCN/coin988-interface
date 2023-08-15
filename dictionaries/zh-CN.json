@@ -1,15 +1,14 @@
 {
-  "greeting": "欢迎",
   "theme-toggle": {
     "light": "浅色",
     "dark": "深色",
     "system": "自动"
   },
-  "apply": "申请",
   "top-nav": {
     "ecosystem": "生态",
     "launchpad": "打新",
-    "market": "市场"
+    "market": "市场",
+    "apply": "申请"
   },
   "ecosystem": {
     "hot": "热门",
@@ -25,5 +24,36 @@
     "contract": "合约地址",
     "audit": "合约审计",
     "token": "代币"
+  },
+  "apply": {
+    "heading": "提交BASE项目",
+    "tagline": "我们的目标帮助Base社区快速发现您的项目和了解生态的发展",
+    "meta": "基础信息",
+    "name": "项目名称",
+    "name-placeholder": "请输入项目名称",
+    "categories": "项目类型",
+    "categories-placeholder": "请选择项目类型",
+    "network": "网络类型",
+    "introduction": "项目介绍",
+    "highlight": "项目特点",
+    "logo": "Logo",
+    "banner": "横幅",
+    "website": "官网",
+    "website-placeholder": "请输入官网地址",
+    "whitepaper": "白皮书",
+    "whitepaper-placeholder": "请输入白皮书地址",
+    "contract-meta": "项目合约信息",
+    "contract": "主要合约地址",
+    "contract-placeholder": "请输入主要合约地址",
+    "audited": "是否审计",
+    "yes": "是",
+    "no": "否",
+    "audit-company": "审计公司",
+    "audit-report-placeholder": "请输入审计报告地址",
+    "is-token": "是否Token",
+    "token-name-placeholder": "请输入Token名称",
+    "token-contract": "Token合约",
+    "token-contract-placeholder": "请输入合约地址",
+    "submit": "提交项目"
   }
 }

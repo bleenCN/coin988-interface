@@ -15,8 +15,8 @@ export function Logo({ locale, staticShow = false }: LogoProps) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <use href="#logo" />
-        <use href="#logo-digits" />
+        <use href="#icon-logo" />
+        <use href="#icon-logo-digits" />
       </svg>
     )
 
@@ -40,8 +40,8 @@ export function Logo({ locale, staticShow = false }: LogoProps) {
         xmlns="http://www.w3.org/2000/svg"
         className="hidden sm:block"
       >
-        <use href="#logo" />
-        <use href="#logo-digits" />
+        <use href="#icon-logo" />
+        <use href="#icon-logo-digits" />
       </svg>
     </Link>
   )
@@ -50,7 +50,7 @@ export function Logo({ locale, staticShow = false }: LogoProps) {
 export function LogoSvg() {
   return (
     <svg className="hidden">
-      <symbol id="logo">
+      <symbol id="icon-logo">
         <path
           d="M16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32Z"
           fill="#2E60FF"
@@ -64,7 +64,7 @@ export function LogoSvg() {
           fill="white"
         />
       </symbol>
-      <symbol id="logo-digits">
+      <symbol id="icon-logo-digits">
         <g className="text-foreground">
           <path
             d="M55.8148 18.792H60.0247C59.2717 23.344 55.9461 25.9813 50.9027 25.9813C44.691 25.9813 41.0813 21.8187 41.0813 16.544C41.0813 11.2693 44.6937 7.10666 50.9027 7.10666C55.9434 7.10666 59.269 9.74399 60.0247 14.296H55.8148C54.9841 11.864 53.269 11.0107 50.9027 11.0107C47.3413 11.0107 45.4467 13.3387 45.4467 16.544C45.4467 19.7493 47.344 22.0773 50.9027 22.0773C53.2663 22.0773 54.9814 21.224 55.8148 18.7947V18.792Z"

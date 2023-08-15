@@ -4,11 +4,11 @@
     "dark": "Dark",
     "system": "System"
   },
-  "apply": "Apply",
   "top-nav": {
     "ecosystem": "Ecosystem",
     "launchpad": "Launchpad",
-    "market": "Market"
+    "market": "Market",
+    "apply": "Apply"
   },
   "ecosystem": {
     "hot": "Hot",
@@ -24,5 +24,36 @@
     "contract": "Contract",
     "audit": "Audit",
     "token": "Token"
+  },
+  "apply": {
+    "heading": "Submit BASE project",
+    "tagline": "Our goal is to help the Base community quickly discover your project and understand the development of the ecosystem",
+    "meta": "Basic Infomation",
+    "name": "Name",
+    "name-placeholder": "Please enter your project name",
+    "categories": "Categories",
+    "categories-placeholder": "Please select your project categories",
+    "network": "Network",
+    "introduction": "Introduction",
+    "highlight": "Highlight",
+    "logo": "Logo",
+    "banner": "Banner",
+    "website": "Website",
+    "website-placeholder": "Please enter your website address",
+    "whitepaper": "Whitepaper",
+    "whitepaper-placeholder": "Please enter your whitepaper address",
+    "contract-meta": "Contract Infomation",
+    "contract": "Main Contract Address",
+    "contract-placeholder": "Please enter your main contract address",
+    "audited": "Audited",
+    "yes": "Yes",
+    "no": "No",
+    "audit-company": "Audit Company",
+    "audit-report-placeholder": "Please enter your audit report address",
+    "is-token": "Is Token",
+    "token-name-placeholder": "Please enter your token name",
+    "token-contract": "Token Contract",
+    "token-contract-placeholder": "Please enter your token contract address",
+    "submit": "Submit"
   }
 }

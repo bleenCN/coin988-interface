@@ -13,7 +13,7 @@ import { ExternalLink } from './external-link'
 import { TopNav } from './top-nav'
 
 export function MobileMenu() {
-  const t = useTranslations()
+  const t = useTranslations('top-nav')
 
   const [open, setOpen] = React.useState(false)
   const pathname = usePathname()
@@ -32,8 +32,8 @@ export function MobileMenu() {
       <SheetContent side="right" className="flex flex-col">
         <Link href="/">
           <svg width={200} height={42}>
-            <use href="#logo" />
-            <use href="#logo-digits" />
+            <use href="#icon-logo" />
+            <use href="#icon-logo-digits" />
           </svg>
         </Link>
         <div className="mt-5">

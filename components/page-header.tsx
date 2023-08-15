@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import Link from 'next-intl/link'
 import { Suspense } from 'react'
 import { useInView } from 'react-intersection-observer'
 
@@ -15,7 +16,7 @@ import { ThemeToggle } from './theme-toggle'
 import { TopNav } from './top-nav'
 
 export default function PageHeader({ locale }: { locale: string }) {
-  const t = useTranslations()
+  const t = useTranslations('top-nav')
   const { ref, inView } = useInView({
     threshold: 1,
   })
@@ -59,7 +60,9 @@ export default function PageHeader({ locale }: { locale: string }) {
                   <TwitterIcon className="text-brand" />
                 </ExternalLink>
               </Button>
-              <Button className="min-w-[80px] rounded-full">{t('apply')}</Button>
+              <Button className="min-w-[80px] rounded-full" asChild>
+                <Link href="/apply">{t('apply')}</Link>
+              </Button>
             </div>
             <ThemeToggle />
             <SlashIcon />
