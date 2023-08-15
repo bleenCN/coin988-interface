@@ -1,7 +1,5 @@
 'use client'
 import clsx from 'clsx'
-import dayjs from 'dayjs'
-import duration from 'dayjs/plugin/duration'
 import Image from 'next/image'
 import { memo, useState } from 'react'
 
@@ -15,7 +13,6 @@ const json = {
   title: '即将发布Token',
 }
 
-dayjs.extend(duration)
 interface TokenInfo {
   tokenIconUrl: string
   tokenSymbol: string
@@ -28,33 +25,39 @@ interface TokenInfo {
   rateOfEth: number
 }
 
-const NewTokens = memo(function NewTokens() {
+interface NewTokensProps {
+  hideTitle?: boolean
+}
+
+const NewTokens = memo(function NewTokens(props: NewTokensProps) {
   const t = getT(json)
+
+  const hideTitle = props.hideTitle ?? false
 
   const newTokens: TokenInfo[] = [
     {
       tokenIconUrl: '/images/icon-blog.png',
-      tokenSymbol: 'Blog0',
+      tokenSymbol: 'Blog',
       webSite: '1',
       twitter: '2',
       discord: '3',
-      deadline: new Date('2023-9-30'),
+      deadline: new Date('2023-8-30'),
       posterUrl: '/images/home-token-poster-placeholder.png',
       rateOfEth: 1000,
     },
     {
-      tokenIconUrl: '/images/icon-blog.png',
-      tokenSymbol: 'Blog1',
+      tokenIconUrl: '/images/icon-zks.png',
+      tokenSymbol: 'ZKS',
       webSite: '1',
       twitter: '2',
       discord: '3',
       deadline: new Date('2023-9-30'),
-      posterUrl: '/images/home-token-poster-placeholder.png',
+      posterUrl: '/images/home-token-poster-placeholder1.png',
       rateOfEth: 1000,
     },
     {
-      tokenIconUrl: '/images/icon-blog.png',
-      tokenSymbol: 'Blog2',
+      tokenIconUrl: '/images/icon-znn.png',
+      tokenSymbol: 'ZNN',
       webSite: '1',
       twitter: '2',
       discord: '3',
@@ -77,7 +80,7 @@ const NewTokens = memo(function NewTokens() {
 
   return (
     <>
-      <Title>{t('title')}</Title>
+      {!hideTitle && <Title>{t('title')}</Title>}
 
       <div
         className={clsx(

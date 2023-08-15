@@ -29,7 +29,7 @@ import { fetchCategories, fetchProjectPage } from './queries'
 interface Project {
   id: string
   name: string
-  logo: string
+  logo?: string
   twitter?: string
   discord?: string
   website?: string
@@ -295,7 +295,7 @@ const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project 
       onClick={boardClickHandler}
     >
       <Image
-        src={project.logo}
+        src={project.logo || ''}
         alt={project.name}
         width={50}
         height={50}

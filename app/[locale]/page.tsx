@@ -1,8 +1,9 @@
+import NewTokens from '@/components/new-tokens'
+
 import ADs from './ads'
 import Categories from './categories'
 import Footer from './footer'
 import InfraAndTools from './Infra&tools'
-import NewTokens from './new-tokens'
 import News from './news'
 import Search from './search'
 import TwitterStars from './twitter-stars'
@@ -11,7 +12,7 @@ import Welcome from './welcome'
 export default function Home() {
   return (
     <>
-      <div className="container md:pt-12">
+      <div className="container pt-6 md:pt-12">
         <Search />
       </div>
 

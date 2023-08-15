@@ -29,7 +29,7 @@ const newsMocker: NewsInfo[] = [
     subtitle: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built...`,
     author: 'WalletConnect',
     authentication: true,
-    authorAvatar: '/images/home-avatar-placeholder.png',
+    authorAvatar: '/images/twitter-avatar-placeholder.png',
     link: '123',
   },
   {
@@ -38,7 +38,7 @@ const newsMocker: NewsInfo[] = [
     subtitle: `with our high-performance Ethereum layer-2 network built...`,
     author: 'WalletConnect',
     authentication: true,
-    authorAvatar: '/images/home-avatar-placeholder.png',
+    authorAvatar: '/images/twitter-avatar-placeholder.png',
     link: '123',
   },
   {
@@ -47,7 +47,7 @@ const newsMocker: NewsInfo[] = [
     subtitle: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built...`,
     author: 'WalletConnect',
     authentication: true,
-    authorAvatar: '/images/home-avatar-placeholder.png',
+    authorAvatar: '/images/twitter-avatar-placeholder.png',
     link: '123',
   },
   {
@@ -56,7 +56,7 @@ const newsMocker: NewsInfo[] = [
     subtitle: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built...`,
     author: 'WalletConnect',
     authentication: true,
-    authorAvatar: '/images/home-avatar-placeholder.png',
+    authorAvatar: '/images/twitter-avatar-placeholder.png',
     link: '123',
   },
   {
@@ -65,7 +65,7 @@ const newsMocker: NewsInfo[] = [
     subtitle: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built...`,
     author: 'WalletConnect',
     authentication: true,
-    authorAvatar: '/images/home-avatar-placeholder.png',
+    authorAvatar: '/images/twitter-avatar-placeholder.png',
     link: '123',
   },
   {
@@ -74,7 +74,7 @@ const newsMocker: NewsInfo[] = [
     subtitle: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built...`,
     author: 'WalletConnect',
     authentication: true,
-    authorAvatar: '/images/home-avatar-placeholder.png',
+    authorAvatar: '/images/twitter-avatar-placeholder.png',
     link: '123',
   },
   {
@@ -83,7 +83,7 @@ const newsMocker: NewsInfo[] = [
     subtitle: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built...`,
     author: 'WalletConnect',
     authentication: true,
-    authorAvatar: '/images/home-avatar-placeholder.png',
+    authorAvatar: '/images/twitter-avatar-placeholder.png',
     link: '123',
   },
   {
@@ -92,7 +92,7 @@ const newsMocker: NewsInfo[] = [
     subtitle: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built...`,
     author: 'WalletConnect',
     authentication: true,
-    authorAvatar: '/images/home-avatar-placeholder.png',
+    authorAvatar: '/images/twitter-avatar-placeholder.png',
     link: '123',
   },
   {
@@ -101,7 +101,7 @@ const newsMocker: NewsInfo[] = [
     subtitle: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built...`,
     author: 'WalletConnect',
     authentication: true,
-    authorAvatar: '/images/home-avatar-placeholder.png',
+    authorAvatar: '/images/twitter-avatar-placeholder.png',
     link: '123',
   },
 ]
