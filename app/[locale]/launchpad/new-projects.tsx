@@ -193,7 +193,7 @@ const Financing = memo(function Financing(props: FinancingProps) {
         </Label>
 
         <div className="flex-1">
-          <FinancingState timeOn={props.timeOn} timeOff={props.timeOff} />
+          <FinancingStatus timeOn={props.timeOn} timeOff={props.timeOff} />
         </div>
       </div>
     </div>
@@ -231,11 +231,20 @@ const Label = memo(function Label(props: LabelProps) {
   )
 })
 
-interface FinancingStateProps {
+interface FinancingStatusProps {
   timeOn?: Date
   timeOff?: Date
 }
-const FinancingState = memo(function FinancingState(props: FinancingStateProps) {
+
+type Staus = 'pending' | 'upcoming' | 'ongoing' | 'completed'
+
+const FinancingStatus = memo(function FinancingState(props: FinancingStatusProps) {
+  const [status, SetStatus] = useState<Staus>('pending')
+
+  const updateStatus = useCallback(() => {
+    const dataTime = new Date().getTime()
+  }, [])
+
   return <div>{props.timeOn?.toLocaleString()}</div>
 })
 export default NewProjects
