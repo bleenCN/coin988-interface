@@ -27,12 +27,36 @@ const Information = memo(function Information() {
   const illustration = '/images/launchpad-illustration.png'
 
   const planes: PlaneProps[] = [
-    { imgSrc: '', title: t('itemTitle1'), subtitle: t('itemSubtitle1') },
-    { imgSrc: '', title: t('itemTitle2'), subtitle: t('itemSubtitle2') },
-    { imgSrc: '', title: t('itemTitle3'), subtitle: t('itemSubtitle3') },
-    { imgSrc: '', title: t('itemTitle4'), subtitle: t('itemSubtitle4') },
-    { imgSrc: '', title: t('itemTitle5'), subtitle: t('itemSubtitle5') },
-    { imgSrc: '', title: t('itemTitle6'), subtitle: t('itemSubtitle6') },
+    {
+      imgSrc: '/images/icon-launchpad-placeholder1.png',
+      title: t('itemTitle1'),
+      subtitle: t('itemSubtitle1'),
+    },
+    {
+      imgSrc: '/images/icon-launchpad-placeholder2.png',
+      title: t('itemTitle2'),
+      subtitle: t('itemSubtitle2'),
+    },
+    {
+      imgSrc: '/images/icon-launchpad-placeholder3.png',
+      title: t('itemTitle3'),
+      subtitle: t('itemSubtitle3'),
+    },
+    {
+      imgSrc: '/images/icon-launchpad-placeholder4.png',
+      title: t('itemTitle4'),
+      subtitle: t('itemSubtitle4'),
+    },
+    {
+      imgSrc: '/images/icon-launchpad-placeholder5.png',
+      title: t('itemTitle5'),
+      subtitle: t('itemSubtitle5'),
+    },
+    {
+      imgSrc: '/images/icon-launchpad-placeholder6.png',
+      title: t('itemTitle6'),
+      subtitle: t('itemSubtitle6'),
+    },
   ]
 
   return (
@@ -46,8 +70,8 @@ const Information = memo(function Information() {
       />
 
       <div className="text-center">
-        <h1 className="text-xl font-extrabold text-c1">{t('title')}</h1>
-        <h4 className="mt-6">{t('subtitle')}</h4>
+        <h1 className="text-xl font-extrabold text-c1 md:text-3xl">{t('title')}</h1>
+        <h4 className="mt-6 md:text-xl">{t('subtitle')}</h4>
       </div>
 
       <div className="mx-auto mt-16 grid grid-cols-1 gap-4 md:max-w-5xl md:grid-cols-2 md:gap-8 xl:grid-cols-3">
