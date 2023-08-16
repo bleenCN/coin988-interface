@@ -41,7 +41,10 @@ const Footer = memo(function Footer() {
 
 const Round = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="cursor-pointer rounded-full bg-light-foreground p-2 hover:bg-light-foreground-hover dark:bg-dark-background md:p-4">
+    <div
+      tabIndex={0}
+      className="cursor-pointer rounded-full bg-light-foreground p-2 hover:bg-light-foreground-hover dark:bg-dark-background md:p-4"
+    >
       {children}
     </div>
   )
