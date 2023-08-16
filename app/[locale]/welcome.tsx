@@ -24,7 +24,7 @@ const Welcome = memo(function Welcome() {
   return (
     <div style={welcomeBg} className="flex flex-col items-center py-20 md:py-40 xl:py-64">
       <Image
-        src={'/images/home-welcome.png'}
+        src={'/images/home-illustration.png'}
         alt={''}
         width={320}
         height={252}

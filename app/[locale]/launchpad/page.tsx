@@ -21,7 +21,7 @@ export default function LaunchpadPage() {
         <Introduction />
       </div>
 
-      <div className="container pt-20">
+      <div className="container pt-32">
         <Information />
       </div>
 
