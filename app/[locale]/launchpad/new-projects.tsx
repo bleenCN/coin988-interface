@@ -2,11 +2,12 @@
 
 import clsx from 'clsx'
 import Image from 'next/image'
-import { memo, ReactNode, useCallback, useState } from 'react'
+import { memo, ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
 
 import withLink from '@/components/hocs/with-link'
 import { DiscordIcon, TwitterIcon, WebSiteIcon } from '@/components/ui/icons.b'
-import { getT } from '@/lib/utils'
+import { useCountdown } from '@/hooks/useCountdown'
+import { getT, isBeforeTime } from '@/lib/utils'
 
 const json = {
   upcoming: '即将推出',
@@ -18,6 +19,10 @@ const json = {
   marketValue: '市值',
   pledge: '质押要求',
   noPledge: '无',
+  statusPending: '待开启',
+  statusUpcoming: '即将开启',
+  statusOngoing: '进行中',
+  statusCompleted: '已售罄',
 }
 
 const mockCards: CardProps[] = [
@@ -37,6 +42,88 @@ const mockCards: CardProps[] = [
       supply: '1000,000,000 VEL',
       price: '1 ETH = 10000 VEL',
       marketValue: '$100,000',
+      timeOn: new Date('2023-8-1'),
+      timeOff: new Date('2023-8-2'),
+    },
+  },
+  {
+    imgSrc: '/images/launchpad-new-project-img-placeholder.png',
+    team: {
+      avatar: '/images/team-avatar-placeholder.png',
+      name: 'Veil',
+      introduce: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built`,
+      tags: ['DEX', 'SWAP'],
+      twitter: 't',
+      website: 't',
+      discord: 't',
+    },
+    financing: {
+      target: '1000 ETH',
+      supply: '1000,000,000 VEL',
+      price: '1 ETH = 10000 VEL',
+      marketValue: '$100,000',
+      timeOn: new Date('2023-8-1'),
+      timeOff: new Date('2023-8-2'),
+    },
+  },
+  {
+    imgSrc: '/images/launchpad-new-project-img-placeholder.png',
+    team: {
+      avatar: '/images/team-avatar-placeholder.png',
+      name: 'Veil',
+      introduce: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built`,
+      tags: ['DEX', 'SWAP'],
+      twitter: 't',
+      website: 't',
+      discord: 't',
+    },
+    financing: {
+      target: '1000 ETH',
+      supply: '1000,000,000 VEL',
+      price: '1 ETH = 10000 VEL',
+      marketValue: '$100,000',
+      timeOn: new Date('2023-8-1'),
+      timeOff: new Date('2023-8-2'),
+    },
+  },
+  {
+    imgSrc: '/images/launchpad-new-project-img-placeholder.png',
+    team: {
+      avatar: '/images/team-avatar-placeholder.png',
+      name: 'Veil',
+      introduce: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built`,
+      tags: ['DEX', 'SWAP'],
+      twitter: 't',
+      website: 't',
+      discord: 't',
+    },
+    financing: {
+      target: '1000 ETH',
+      supply: '1000,000,000 VEL',
+      price: '1 ETH = 10000 VEL',
+      marketValue: '$100,000',
+      timeOn: new Date('2023-8-1'),
+      timeOff: new Date('2023-8-2'),
+    },
+  },
+  {
+    imgSrc: '/images/launchpad-new-project-img-placeholder.png',
+    team: {
+      avatar: '/images/team-avatar-placeholder.png',
+      name: 'Veil',
+      introduce: `Build dApps with exceptional UX, all while relying on Ethereum's unrivaled security, with our high-performance Ethereum layer-2 network built`,
+      tags: ['DEX', 'SWAP'],
+      twitter: 't',
+      website: 't',
+      discord: 't',
+    },
+    financing: {
+      target: '1000 ETH',
+      supply: '1000,000,000 VEL',
+      price: '1 ETH = 10000 VEL',
+      marketValue: '$100,000',
+      timeOn: new Date('2023-8-1'),
+      timeOff: new Date('2023-8-2'),
     },
   },
 ]
@@ -53,7 +140,7 @@ const NewProjects = memo(function NewProjects() {
     <div>
       <Tabs titles={titles} clickHandler={tabChangehandler} activeIndex={activeIndex} />
 
-      <div className="mt-8">
+      <div className="mt-8 grid grid-cols-1 gap-4 md:gap-8 lg:grid-cols-2">
         {mockCards.map((cardinfo, index) => (
           <Card {...cardinfo} key={index} />
         ))}
@@ -99,17 +186,30 @@ interface CardProps {
 
 const Card = memo(function Card(props: CardProps) {
   return (
-    <div className="overflow-hidden rounded-xl">
-      <Image src={props.imgSrc ?? ''} alt={''} width={876} height={340} className="" />
+    <div className="overflow-hidden rounded-xl shadow-md">
+      <Image
+        src={props.imgSrc ?? ''}
+        alt={''}
+        width={876}
+        height={340}
+        className="h-auto w-full"
+      />
 
-      <div className="rounded-b-xl border border-t-0 border-c4 md:flex">
-        <div className="p-4 md:p-8">
+      <div className="rounded-b-xl border border-t-0 border-c4 md:flex lg:flex-col 2xl:flex-row">
+        <div className="flex-1 p-4 xl:p-8">
           <Team {...props.team} />
         </div>
 
-        <div className="line mx-4 h-px bg-c4 md:my-8 md:w-px" />
+        <div
+          className={clsx(
+            'line mx-4 h-px bg-c4',
+            'md:mx-0 md:my-4 md:h-auto md:w-px',
+            'lg:mx-8 lg:my-0 lg:h-px lg:w-auto',
+            '2xl:mx-0 2xl:my-8 2xl:h-auto 2xl:w-px',
+          )}
+        />
 
-        <div className="p-4 md:p-8">
+        <div className="flex-1 p-4 xl:p-8">
           <Financing {...props.financing} />
         </div>
       </div>
@@ -149,7 +249,7 @@ const Team = memo(function Team(props: TeamProps) {
         </div>
       </div>
 
-      <div className="mt-4 line-clamp-4 text-sm md:mt-8">{props.introduce}</div>
+      <div className="mt-4 line-clamp-4 text-sm xl:mt-8">{props.introduce}</div>
 
       <div className="mt-4 flex gap-4 text-xl">
         {props.website && <WebsiteIconWithLink href={props.website} />}
@@ -187,12 +287,12 @@ const Financing = memo(function Financing(props: FinancingProps) {
         <span className="font-semibold text-c1">{props.marketValue}</span>
       </Label>
 
-      <div className="flex">
+      <div className="flex items-center justify-between">
         <Label label={t('pledge')} className="text-c3">
           <span>{props.pledge ?? ':无'}</span>
         </Label>
 
-        <div className="flex-1">
+        <div>
           <FinancingStatus timeOn={props.timeOn} timeOff={props.timeOff} />
         </div>
       </div>
@@ -239,12 +339,63 @@ interface FinancingStatusProps {
 type Staus = 'pending' | 'upcoming' | 'ongoing' | 'completed'
 
 const FinancingStatus = memo(function FinancingState(props: FinancingStatusProps) {
-  const [status, SetStatus] = useState<Staus>('pending')
+  const { timeOn, timeOff } = props
+
+  const t = useMemo(() => getT(json), [])
+
+  const [status, setStatus] = useState<Staus>('pending')
 
   const updateStatus = useCallback(() => {
-    const dataTime = new Date().getTime()
-  }, [])
+    if (!timeOn || !timeOff) return setStatus('pending')
+    if (timeOn && isBeforeTime(timeOn)) return setStatus('upcoming')
+    if (timeOff && isBeforeTime(timeOff)) return setStatus('ongoing')
+    if (timeOff && !isBeforeTime(timeOff)) return setStatus('completed')
+  }, [timeOff, timeOn])
 
-  return <div>{props.timeOn?.toLocaleString()}</div>
+  useEffect(() => {
+    updateStatus()
+    const timer = setInterval(updateStatus, 1000)
+    return () => {
+      clearInterval(timer)
+    }
+  }, [updateStatus])
+
+  const { countdown: timeOnCountdown } = useCountdown(timeOn)
+  const { countdown: timeOffCountdown } = useCountdown(timeOff)
+
+  const content = useMemo(() => {
+    switch (status) {
+      case 'pending':
+        return (
+          <span className="text-sm font-semibold text-[#7F43FF]">
+            {t('statusPending')}
+          </span>
+        )
+      case 'upcoming':
+        return (
+          <span className="text-xs">
+            {`${t('statusUpcoming')} : `}
+            <span className="font-semibold">{timeOnCountdown}</span>
+          </span>
+        )
+      case 'ongoing':
+        return (
+          <span className="text-xs">
+            {`${t('statusOngoing')} : `}
+            <span className="font-semibold">{timeOffCountdown}</span>
+          </span>
+        )
+      case 'completed':
+        return (
+          <span className="text-sm font-semibold text-c3">{t('statusCompleted')}</span>
+        )
+    }
+  }, [status, t, timeOffCountdown, timeOnCountdown])
+
+  return (
+    <div className="grid h-10 w-48 place-items-center rounded-lg border border-c4">
+      {content}
+    </div>
+  )
 })
 export default NewProjects

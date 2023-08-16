@@ -19,15 +19,15 @@ interface Time {
 }
 
 export function useCountdown(
-  deadline: Date,
+  deadline?: Date,
   options: CountdownOptions = { d: true, h: true, m: true, s: true },
 ) {
   const TimeRef = useRef<Time>({ d: NaN, h: NaN, m: NaN, s: NaN })
-  const [countdown, setCountdown] = useState('')
+  const [countdown, setCountdown] = useState(format(TimeRef.current, options))
 
   const updateCountdown = useCallback(() => {
     const now = new Date()
-    const diff = deadline.getTime() - now.getTime()
+    const diff = deadline ? deadline.getTime() - now.getTime() : 0
     const diffObj = dayjs.duration(diff)
 
     if (options.d) TimeRef.current.d = Math.floor(diffObj.asDays())
@@ -39,6 +39,7 @@ export function useCountdown(
   }, [deadline, options])
 
   useEffect(() => {
+    updateCountdown()
     const timer = setInterval(() => {
       updateCountdown()
     }, 1000)
