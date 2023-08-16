@@ -10,7 +10,7 @@ import { useCountdown } from '@/hooks/useCountdown'
 import { getT } from '@/lib/utils'
 
 const json = {
-  title: '即将发布Token',
+  title: '即将发布',
 }
 
 interface TokenInfo {

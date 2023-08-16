@@ -50,7 +50,7 @@ const Information = memo(function Information() {
         <h4 className="mt-6">{t('subtitle')}</h4>
       </div>
 
-      <div className="mt-16 grid grid-cols-1 gap-4">
+      <div className="mx-auto mt-16 grid grid-cols-1 gap-4 md:max-w-5xl md:grid-cols-2 md:gap-8 xl:grid-cols-3">
         {planes.map((plane, index) => (
           <Plane
             imgSrc={plane.imgSrc}
