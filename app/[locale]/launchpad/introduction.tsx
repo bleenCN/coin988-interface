@@ -147,7 +147,7 @@ const CoinBoard = memo(function CoinBoard() {
         <div className="mt-4">{introduceStr}</div>
 
         <div className="mt-8">
-          <button className="h-12 w-full rounded-lg bg-c1 text-center lg:max-w-[240px]">
+          <button className="h-12 w-full rounded-lg bg-c1 text-center hover:brightness-110 active:brightness-90 lg:max-w-[240px]">
             {t('claim')}
           </button>
         </div>

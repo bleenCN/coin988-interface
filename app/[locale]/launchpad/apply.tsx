@@ -15,7 +15,7 @@ const Apply = memo(function Apply() {
     <div className="text-center">
       <h2 className="text-xl font-semibold">{t('title')}</h2>
       <h4 className="mt-8 text-sm">{t('subtitle')}</h4>
-      <button className="mt-14 w-80 rounded-xl bg-c1 p-4 font-semibold text-white">
+      <button className="mt-14 w-80 rounded-lg bg-c1 p-4 font-semibold text-white hover:brightness-110 active:brightness-90">
         {t('apply')}
       </button>
     </div>
