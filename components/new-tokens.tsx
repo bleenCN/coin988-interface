@@ -102,7 +102,7 @@ const NewTokens = memo(function NewTokens(props: NewTokensProps) {
           ))}
         </div>
 
-        <div className="relative w-max">
+        <div className="relative w-max lg:max-w-[66%] xl:max-w-none">
           <TokenPoster tokenInfo={newTokens[0]} hidden />
 
           {newTokens.map((token, index) => (
@@ -140,9 +140,11 @@ const TokenBoard = memo(function TokenBoard(props: {
 
       <div
         className={clsx(
-          'm-1 hidden rounded-xl bg-dark-foreground p-2 text-white hover:bg-dark-foreground-hover',
+          'm-1 hidden rounded-xl bg-dark-foreground p-2 text-white',
           'group cursor-pointer transition-all lg:block xl:rounded-[20px]  xl:p-4 xl:pb-2',
-          { 'bg-dark-foreground-active hover:bg-dark-foreground-active': !!props.active },
+          !!props.active
+            ? 'bg-dark-foreground-active hover:bg-dark-foreground-active'
+            : ' hover:bg-dark-foreground-hover',
         )}
         tabIndex={0}
       >
@@ -206,7 +208,8 @@ const TokenPoster = memo(function TokenPoster(props: {
         height={522}
         className={clsx(
           { 'opacity-0': !!props.hidden },
-          'block rounded-xl lg:h-[344px] lg:w-[682px]',
+          'block rounded-xl object-cover',
+          'lg:h-[344px] lg:w-[682px]',
           'xl:h-[452px] xl:w-[894px]',
         )}
       />
