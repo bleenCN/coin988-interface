@@ -1,0 +1,32 @@
+{
+  "seach": {
+    "placeHodler": "Search in Coin988"
+  },
+  "catgegories": {
+    "title": "应用分类",
+    "more": "查看更多",
+    "noData": "没有数据",
+    "loading": "加载中..."
+  },
+  "newTokens": {
+    "title": "即将发布"
+  },
+  "infraAndTools": {
+    "title": "Infra&Tools"
+  },
+  "twitterStars": {
+    "title": "twitter达人"
+  },
+  "news": {
+    "title": "最新动态"
+  },
+  "welcome": {
+    "title": "更多探索欢迎使用Coin988搜索引擎",
+    "subtitle": "Coin988覆盖最广的链上数据和各类Dapp、NFT、DeFi、市场等"
+  },
+  "footer": {
+    "title": "Web3世界入口，塑造去中心化未来",
+    "statement": "免责声明：请注意，Coin988上展示的信息均由第三方提供，仅供参考之用，不应将其视为任何类型的专业或财务建议",
+    "copy": "© 2023 Coin988 "
+  }
+}
