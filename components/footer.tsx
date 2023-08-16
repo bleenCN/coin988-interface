@@ -31,9 +31,9 @@ const Footer = memo(function Footer() {
         </Round>
       </div>
 
-      <div className="pb-10 pt-20 text-center text-xs opacity-50">
+      <div className="pb-2 pt-20 text-center text-xs opacity-50 md:pb-8">
         <div>{t('statement')}</div>
-        <div className="mt-4">{t('copy')}</div>
+        <div className="mt-">{t('copy')}</div>
       </div>
     </div>
   )

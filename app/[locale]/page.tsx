@@ -1,8 +1,8 @@
+import Footer from '@/components/footer'
 import NewTokens from '@/components/new-tokens'
 
 import ADs from './ads'
 import Categories from './categories'
-import Footer from './footer'
 import InfraAndTools from './Infra&tools'
 import News from './news'
 import Search from './search'
