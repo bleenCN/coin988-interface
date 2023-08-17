@@ -1,8 +1,6 @@
 'use client'
 
-import clsx from 'clsx'
 import gsap from 'gsap'
-import Image from 'next/image'
 import {
   CSSProperties,
   memo,
@@ -12,123 +10,116 @@ import {
   useState,
 } from 'react'
 
-import { TwitterAuthIcon } from '@/components/ui/icons.b'
 import Title from '@/components/ui/Title'
+import TwitterUser, { TwitterUserProps } from '@/components/ui/twitter-user'
 import { getT } from '@/lib/utils'
 
 const json = {
   title: 'twitter达人',
 }
 
-interface TwitterUser {
-  avatar: string
-  name: string
-  category: string
-  authentication?: boolean
-}
-
-const users: TwitterUser[] = [
+const users: TwitterUserProps[] = [
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
     authentication: true,
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
     authentication: true,
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
   {
     avatar: '/images/twitter-avatar-placeholder.png',
     name: 'baneam',
-    category: 'degame',
+    subtitle: 'degame',
   },
 ]
 
@@ -156,7 +147,7 @@ const TwitterStars = memo(function TwitterStars() {
 })
 
 interface UserSwiperProps {
-  users: TwitterUser[]
+  users: TwitterUserProps[]
   direction?: 'tl' | 'tr'
   speed?: number
 }
@@ -210,33 +201,7 @@ const UserSwiper = memo(function UserSwiper({
     <div onMouseEnter={pause} onMouseLeave={resume} className="w-full overflow-hidden">
       <div className="flex" ref={containerRef}>
         {users.concat(users).map((user, index) => (
-          <div
-            className="group m-4 shrink-0 cursor-pointer text-center lg:mx-10 lg:my-6"
-            key={index}
-          >
-            <Image
-              src={user.avatar}
-              alt={''}
-              width={80}
-              height={80}
-              className={clsx(
-                'mx-auto h-12 w-12 overflow-hidden rounded-full transition-all',
-                'border-2 border-transparent group-hover:border-dark-foreground-active lg:h-20 lg:w-20',
-              )}
-            />
-
-            <div className="relative mx-auto mt-2 w-fit">
-              <span className="font-semibold lg:text-lg">{user.name}</span>
-              <TwitterAuthIcon
-                className={clsx(
-                  { hidden: !user.authentication },
-                  'absolute left-full top-1/2 -translate-y-1/2',
-                )}
-              />
-            </div>
-
-            <div className="text-xs opacity-50">{user.category}</div>
-          </div>
+          <TwitterUser user={user} key={index} />
         ))}
       </div>
     </div>
