@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { memo, ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
 
 import withLink from '@/components/hocs/with-link'
-import { DiscordIcon, TwitterIcon, WebSiteIcon } from '@/components/ui/icons.b'
+import { DiscordIcon, TwitterIcon, WebsiteIcon } from '@/components/ui/icons.b'
 import { useCountdown } from '@/hooks/useCountdown'
 import { getT, isBeforeTime } from '@/lib/utils'
 
@@ -217,7 +217,7 @@ const Card = memo(function Card(props: CardProps) {
   )
 })
 
-const WebsiteIconWithLink = withLink(WebSiteIcon)
+const WebsiteIconWithLink = withLink(WebsiteIcon)
 const TwitterIconWithLink = withLink(TwitterIcon)
 const DiscordIconWithLink = withLink(DiscordIcon)
 

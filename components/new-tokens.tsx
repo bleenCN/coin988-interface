@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { memo, useState } from 'react'
 
 import ArrowButton from '@/components/ui/arrow-button'
-import { DiscordIcon, TwitterIcon, WebSiteIcon } from '@/components/ui/icons.b'
+import { DiscordIcon, TwitterIcon, WebsiteIcon } from '@/components/ui/icons.b'
 import Title from '@/components/ui/Title'
 import { useCountdown } from '@/hooks/useCountdown'
 import { getT } from '@/lib/utils'
@@ -162,7 +162,7 @@ const TokenBoard = memo(function TokenBoard(props: {
               {props.tokenInfo.tokenSymbol}
             </h1>
             <div className="flex gap-2 py-0.5 lg:text-xl xl:text-2xl">
-              <WebSiteIcon tabIndex={0} theme="light" />
+              <WebsiteIcon tabIndex={0} theme="light" />
               <DiscordIcon tabIndex={0} theme="light" />
               <TwitterIcon tabIndex={0} theme="light" />
             </div>
@@ -227,7 +227,7 @@ const TokenPoster = memo(function TokenPoster(props: {
           <div className="flex flex-1 flex-col justify-between pl-2">
             <h1 className="text-lg font-semibold">{props.tokenInfo.tokenSymbol}</h1>
             <div className="flex gap-2 py-0.5">
-              <WebSiteIcon tabIndex={0} theme="light" />
+              <WebsiteIcon tabIndex={0} theme="light" />
               <DiscordIcon tabIndex={0} theme="light" />
               <TwitterIcon tabIndex={0} theme="light" />
             </div>

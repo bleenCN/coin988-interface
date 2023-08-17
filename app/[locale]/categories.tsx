@@ -12,7 +12,7 @@ import {
   LayeredIcon,
   PieIcon,
   TwitterIcon,
-  WebSiteIcon,
+  WebsiteIcon,
 } from '@/components/ui/icons.b'
 import RoundButton from '@/components/ui/round-button'
 import Title from '@/components/ui/Title'
@@ -276,7 +276,7 @@ const CategoryTitle = memo(function Category(props: CategoryTitleProps) {
 
 const TwitterIconWithLink = withLink(TwitterIcon)
 const DiscordIconWithLink = withLink(DiscordIcon)
-const WebSiteIconWithLink = withLink(WebSiteIcon)
+const WebsiteIconWithLink = withLink(WebsiteIcon)
 
 const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project }) {
   const router = useRouter()
@@ -307,7 +307,7 @@ const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project 
       <div className="flex gap-3 text-xl">
         {project.website && (
           <div title={project.website}>
-            <WebSiteIconWithLink href={project.website} className="cursor-pointer" />
+            <WebsiteIconWithLink href={project.website} className="cursor-pointer" />
           </div>
         )}
         {project.twitter && (

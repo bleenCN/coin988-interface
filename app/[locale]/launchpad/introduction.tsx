@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { memo } from 'react'
 
 import withLink from '@/components/hocs/with-link'
-import { ArrowIcon, DiscordIcon, TwitterIcon, WebSiteIcon } from '@/components/ui/icons.b'
+import { ArrowIcon, DiscordIcon, TwitterIcon, WebsiteIcon } from '@/components/ui/icons.b'
 import { getT } from '@/lib/utils'
 
 const json = {
@@ -92,7 +92,7 @@ const IntroBoard = memo(function IntroBoard(props: IntroBoard) {
   )
 })
 
-const WebsiteIconWithLink = withLink(WebSiteIcon)
+const WebsiteIconWithLink = withLink(WebsiteIcon)
 const TwitterIconWithLink = withLink(TwitterIcon)
 const DiscordIconWithLink = withLink(DiscordIcon)
 
