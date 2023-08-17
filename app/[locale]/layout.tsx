@@ -13,6 +13,8 @@ import {
 import { getDictionary } from '@/get-dictionary'
 import { i18n, type Locale } from '@/i18n.config'
 
+import Footer from './footer'
+
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }))
 }
@@ -54,6 +56,7 @@ export default async function Layout({
             <TanstackQueryClientProvider>
               <PageHeader locale={locale} />
               {children}
+              <Footer />
               <LogoSvg />
             </TanstackQueryClientProvider>
           </I18nProvider>

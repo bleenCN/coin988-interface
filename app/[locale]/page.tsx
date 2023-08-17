@@ -1,4 +1,3 @@
-import Footer from '@/components/footer'
 import NewTokens from '@/components/new-tokens'
 
 import ADs from './ads'
@@ -45,10 +44,6 @@ export default function Home() {
       </div>
 
       <div className="line h-px w-full bg-[#DDDFE7] dark:bg-dark-foreground" />
-
-      <div className="container">
-        <Footer />
-      </div>
     </>
   )
 }

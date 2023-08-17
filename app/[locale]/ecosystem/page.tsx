@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import HiddenFooter from '@/components/hidden-footer'
 import { Locale } from '@/i18n.config'
 import banner from '@/public/ecosystem/banner.jpg'
 
@@ -20,6 +21,7 @@ export default function Page({
       </div>
       <FeaturedProjects tab={searchParams.tab as FeaturedProjectsTab} />
       <AllProjects searchParams={searchParams} />
+      <HiddenFooter />
     </>
   )
 }

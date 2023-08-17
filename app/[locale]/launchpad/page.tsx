@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { CSSProperties } from 'react'
 
-import Footer from '@/components/footer'
 import NewTokens from '@/components/new-tokens'
 
 import Apply from './apply'
@@ -54,10 +53,6 @@ export default function LaunchpadPage() {
             <Apply />
           </div>
         </div>
-      </div>
-
-      <div className="container pt-20">
-        <Footer />
       </div>
     </>
   )

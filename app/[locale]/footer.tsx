@@ -1,8 +1,11 @@
-import { memo, ReactNode } from 'react'
+'use client'
+import { memo } from 'react'
 
 import { Logo } from '@/components/logo'
 import { DiscordIcon, EmailIcon, TwitterIcon } from '@/components/ui/icons.b'
+import Round from '@/components/ui/round'
 import { getT } from '@/lib/utils'
+import useUiStore from '@/store/useFooterState'
 
 const json = {
   title: 'Web3世界入口，塑造去中心化未来',
@@ -12,9 +15,14 @@ const json = {
 }
 
 const Footer = memo(function Footer() {
+  const uiStore = useUiStore()
+
   const t = getT(json)
+
+  if (!uiStore.footerDisplay) return
+
   return (
-    <div className="flex flex-col items-center pt-20">
+    <div className="container flex flex-col items-center pt-20">
       <Logo staticShow locale={'/'} />
 
       <div className="mt-7 text-lg font-semibold md:text-3xl">{t('title')}</div>
@@ -38,16 +46,5 @@ const Footer = memo(function Footer() {
     </div>
   )
 })
-
-const Round = ({ children }: { children: ReactNode }) => {
-  return (
-    <div
-      tabIndex={0}
-      className="cursor-pointer rounded-full bg-light-foreground p-2 hover:bg-light-foreground-hover dark:bg-dark-background md:p-4"
-    >
-      {children}
-    </div>
-  )
-}
 
 export default Footer
