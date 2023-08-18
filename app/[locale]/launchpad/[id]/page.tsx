@@ -67,7 +67,7 @@ export default function Page({ params }: { params: PageParams }) {
     currentNum: 0,
     targetNum: 1000000,
 
-    timeOn: new Date('2023-10-1'),
+    timeOn: new Date('2023-8-1'),
     timeOff: new Date('2023-11-2'),
   }
 
@@ -110,6 +110,9 @@ export default function Page({ params }: { params: PageParams }) {
             level={p.level}
             currentNum={p.currentNum}
             targetNum={p.targetNum}
+            timeOn={p.timeOn}
+            timeOff={p.timeOff}
+            maxLimit={p.maxLimit}
           />
         </div>
       </div>

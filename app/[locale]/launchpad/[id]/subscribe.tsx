@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { memo, useMemo } from 'react'
+import { memo, useMemo, useState } from 'react'
 
 import { useSubscribeStatus } from '@/hooks/useSubscribeStatus'
 import { getT } from '@/lib/utils'
@@ -18,9 +18,13 @@ const json = {
   status1: '未开启',
   status3: '已售罄',
   label1: 'Coin988 Vip轮次',
-  upcoming: '即将推出',
-  ongoing: '进行中',
-  complete: '已售罄',
+  label2: 'Coin988 白名单轮次',
+  label3: 'Coin988 公开轮次',
+  roundStatus1: '即将推出',
+  roundStatus2: '进行中',
+  roundStatus3: '等待通知',
+  claim: '领取',
+  claimLabel: '待领取 {symbol}',
   // status1:'',
   // statusDesc1:'',
   // status2:'',
@@ -41,6 +45,9 @@ interface SubscribeProps {
   maxLimit?: string
   currentNum?: number
   targetNum?: number
+  timeOn?: Date
+  timeOff?: Date
+  symbol?: string
 }
 
 const Subscribe = memo(function Subscribe(props: SubscribeProps) {
@@ -49,8 +56,8 @@ const Subscribe = memo(function Subscribe(props: SubscribeProps) {
     <div className="rounded-xl border border-c4 p-4">
       <h2 className="text-xl font-semibold">{t('title')}</h2>
 
-      <div className="mt-4">
-        <div className="flex flex-col gap-4 rounded-lg bg-c1/5 p-4">
+      <div className="mt-4 lg:flex">
+        <div className="flex flex-col gap-4 rounded-lg bg-c1/5 p-4 lg:flex-1">
           <Label label={t('target')} value={props.target} />
           <Label label={t('supply')} value={props.supply} />
           <Label label={t('price')} value={props.price} />
@@ -59,10 +66,15 @@ const Subscribe = memo(function Subscribe(props: SubscribeProps) {
           <Slide currentNum={props.currentNum} targetNum={props.targetNum} />
         </div>
 
-        <div className="line my-4 h-px bg-c4" />
+        <div className="line h-px bg-c4 lg:mx-4 lg:h-auto lg:w-px" />
 
-        <div>
-          <SubscribeStatus />
+        <div className="lg:flex-1">
+          <SubscribeStatus
+            level={props.level}
+            maxLimit={props.maxLimit}
+            timeOn={props.timeOn}
+            timeOff={props.timeOff}
+          />
         </div>
       </div>
     </div>
@@ -120,44 +132,124 @@ const Slide = memo(function Slide({ currentNum = 0, targetNum = 0 }: SlideProps)
 interface SubscribeStatusProps {
   timeOn?: Date
   timeOff?: Date
+  level?: string
+  maxLimit?: string
+  symbol?: string
 }
+
 const SubscribeStatus = memo(function SubscribeStatus(props: SubscribeStatusProps) {
   const t = useMemo(() => getT(json), [])
+  const [numOfToken, setNumOfToken] = useState('')
 
   const { status, timeOffCountdown } = useSubscribeStatus(props.timeOn, props.timeOff)
 
+  // TODO 接入接口换算
+  const translateTokenToEth = (a: string) => {
+    return `${a?.[0] ?? '0.00'} ETH`
+  }
+
   const statusTxt =
-    status === 'completed'
-      ? t('status3')
-      : status === 'ongoing'
-      ? timeOffCountdown
-      : t('status1')
+    status === 'completed' ? (
+      <span className="text-lg font-semibold opacity-50 md:text-3xl">{t('status3')}</span>
+    ) : status === 'ongoing' ? (
+      <span className="text-lg font-semibold text-c1">{timeOffCountdown}</span>
+    ) : (
+      t('status1')
+    )
 
   const content = useMemo(() => {
     switch (status) {
       case 'pending':
       case 'upcoming':
         return (
-          <div>
-            <Label
-              label={<ColorSpan>{t('label1')}</ColorSpan>}
-              value={<span className="text-sm font-semibold">{t('upcoming')}</span>}
-            />
+          <div className="flex flex-col gap-3 text-sm font-semibold">
+            <div className="rounded-lg bg-c1/5 p-3 md:p-4">
+              <Label
+                label={<ColorSpan>{t('label1')}</ColorSpan>}
+                value={<span>{t('roundStatus1')}</span>}
+              />
+            </div>
+            <div className="rounded-lg bg-c1/5 p-3 md:p-4">
+              <Label
+                label={<ColorSpan>{t('label1')}</ColorSpan>}
+                value={<span className="text-[#07C877]">{t('roundStatus2')}</span>}
+              />
+            </div>
+            <div className="rounded-lg bg-c1/5 p-3 md:p-4">
+              <Label
+                label={<ColorSpan>{t('label1')}</ColorSpan>}
+                value={<span className="text-[#FF2EF7]">{t('roundStatus3')}</span>}
+              />
+            </div>
           </div>
         )
       case 'ongoing':
-        return <div>timeOffCountdown</div>
+        return (
+          <div>
+            <div className="flex justify-between text-sm font-semibold">
+              <span>
+                <span>{t('level')}</span>{' '}
+                <span className="ml-2 text-c1 md:ml-6">{props.level}</span>
+              </span>
+              <span>
+                <span>{`${t('maxLimit')}:`}</span>
+                <span className="ml-2">{props.maxLimit}</span>
+              </span>
+            </div>
+
+            <div className="mt-4 flex overflow-hidden text-sm font-semibold">
+              <input
+                value={numOfToken}
+                onChange={(e) => {
+                  setNumOfToken(e.target.value)
+                }}
+                className="w-0 flex-1 rounded-l-lg border border-black/10 py-3 pl-4"
+                placeholder={t('NumInputPlacehodler')}
+              />
+              <span
+                className={clsx(
+                  'block whitespace-nowrap rounded-r-lg border border-l-0',
+                  'w-28 bg-c4/30 px-2 py-3 text-black/40',
+                )}
+              >
+                {translateTokenToEth(numOfToken)}
+              </span>
+            </div>
+
+            <div className="mt-4">
+              <button className="w-full rounded-lg bg-c1 py-3 text-sm font-semibold text-white">
+                {t('confirm')}
+              </button>
+            </div>
+          </div>
+        )
       case 'completed':
-        return <div>com</div>
+        return (
+          <div>
+            <h4 className="text-sm font-semibold">
+              {t('claimLabel', { symbol: 'COB' })}
+            </h4>
+
+            <div className="mt-4 rounded-lg border py-3">
+              <span className="font-semibold">{'1000,000,000 COB'}</span>
+            </div>
+
+            <div className="mt-4">
+              <button className="w-full rounded-lg bg-c1 py-3 text-white">
+                {t('claim')}
+              </button>
+            </div>
+          </div>
+        )
     }
-  }, [status, t])
+  }, [numOfToken, props.level, props.maxLimit, status, t])
 
   return (
     <div className="text-center">
-      <h6 className="text-xs opacity-80">{t('countdown')}</h6>
-      <span className="text-lg font-semibold opacity-80 md:text-3xl">{statusTxt}</span>
+      <h6 className="text-xs opacity-50">{t('countdown')}</h6>
+      <h2 className="mt-2">{statusTxt}</h2>
 
-      <div>{content}</div>
+      <div className="mt-4 md:mt-6">{content}</div>
     </div>
   )
 })
@@ -172,7 +264,7 @@ const ColorSpan = memo(function ColorSpan({
       className={clsx(
         'bg-gradient-to-r from-c1 to-[#FB2EFF]',
         'bg-clip-text font-semibold text-transparent',
-        'text-base md:text-xl',
+        'text-sm md:text-xl',
       )}
     >
       {children}

@@ -61,9 +61,12 @@ const Top = memo(function Top(props: TopProps) {
 
         <p className="mx-auto mt-6 max-w-2xl text-c2">{props.synopsis}</p>
 
-        <div className="mt-8 flex cursor-pointer select-none items-center justify-center gap-4 text-c1 hover:brightness-125 active:brightness-90">
+        <div
+          tabIndex={0}
+          className="mx-auto mt-6 flex w-fit cursor-pointer select-none items-center justify-center gap-4 p-2 text-c1 hover:brightness-125 active:brightness-90"
+        >
           <FootIcon className="text-2xl" />
-          <span className="text-sm"> {t('unlike')}</span>
+          <span className="text-sm">{t('unlike')}</span>
         </div>
 
         <span className="mt-6 block text-xs text-c3">
