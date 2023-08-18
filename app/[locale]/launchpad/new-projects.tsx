@@ -2,12 +2,12 @@
 
 import clsx from 'clsx'
 import Image from 'next/image'
-import { memo, ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
+import { memo, ReactNode, useCallback, useMemo, useState } from 'react'
 
 import withLink from '@/components/hocs/with-link'
 import { DiscordIcon, TwitterIcon, WebsiteIcon } from '@/components/ui/icons.b'
-import { useCountdown } from '@/hooks/useCountdown'
-import { getT, isBeforeTime } from '@/lib/utils'
+import { useSubscribeStatus } from '@/hooks/useSubscribeStatus'
+import { getT } from '@/lib/utils'
 
 const json = {
   upcoming: '即将推出',
@@ -42,8 +42,8 @@ const mockCards: CardProps[] = [
       supply: '1000,000,000 VEL',
       price: '1 ETH = 10000 VEL',
       marketValue: '$100,000',
-      timeOn: new Date('2023-8-1'),
-      timeOff: new Date('2023-8-2'),
+      timeOn: new Date('2023-10-1'),
+      timeOff: new Date('2023-11-2'),
     },
   },
   {
@@ -63,7 +63,7 @@ const mockCards: CardProps[] = [
       price: '1 ETH = 10000 VEL',
       marketValue: '$100,000',
       timeOn: new Date('2023-8-1'),
-      timeOff: new Date('2023-8-2'),
+      timeOff: new Date('2023-10-2'),
     },
   },
   {
@@ -336,32 +336,15 @@ interface FinancingStatusProps {
   timeOff?: Date
 }
 
-type Staus = 'pending' | 'upcoming' | 'ongoing' | 'completed'
-
 const FinancingStatus = memo(function FinancingState(props: FinancingStatusProps) {
   const { timeOn, timeOff } = props
 
   const t = useMemo(() => getT(json), [])
 
-  const [status, setStatus] = useState<Staus>('pending')
-
-  const updateStatus = useCallback(() => {
-    if (!timeOn || !timeOff) return setStatus('pending')
-    if (timeOn && isBeforeTime(timeOn)) return setStatus('upcoming')
-    if (timeOff && isBeforeTime(timeOff)) return setStatus('ongoing')
-    if (timeOff && !isBeforeTime(timeOff)) return setStatus('completed')
-  }, [timeOff, timeOn])
-
-  useEffect(() => {
-    updateStatus()
-    const timer = setInterval(updateStatus, 1000)
-    return () => {
-      clearInterval(timer)
-    }
-  }, [updateStatus])
-
-  const { countdown: timeOnCountdown } = useCountdown(timeOn)
-  const { countdown: timeOffCountdown } = useCountdown(timeOff)
+  const { status, timeOnCountdown, timeOffCountdown } = useSubscribeStatus(
+    timeOn,
+    timeOff,
+  )
 
   const content = useMemo(() => {
     switch (status) {

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 
+import { useSubscribeStatus } from '@/hooks/useSubscribeStatus'
 import { getT } from '@/lib/utils'
 
 const json = {
@@ -16,7 +17,10 @@ const json = {
   countdown: '倒计时',
   status1: '未开启',
   status3: '已售罄',
-  round1: '',
+  label1: 'Coin988 Vip轮次',
+  upcoming: '即将推出',
+  ongoing: '进行中',
+  complete: '已售罄',
   // status1:'',
   // statusDesc1:'',
   // status2:'',
@@ -58,7 +62,7 @@ const Subscribe = memo(function Subscribe(props: SubscribeProps) {
         <div className="line my-4 h-px bg-c4" />
 
         <div>
-          <h6></h6>
+          <SubscribeStatus />
         </div>
       </div>
     </div>
@@ -66,8 +70,8 @@ const Subscribe = memo(function Subscribe(props: SubscribeProps) {
 })
 
 interface LabelProps {
-  label: string
-  value?: string
+  label: string | JSX.Element
+  value?: string | JSX.Element
 }
 const Label = memo(function Label(props: LabelProps) {
   return (
@@ -110,6 +114,69 @@ const Slide = memo(function Slide({ currentNum = 0, targetNum = 0 }: SlideProps)
         <span>{targetNum}</span>
       </div>
     </div>
+  )
+})
+
+interface SubscribeStatusProps {
+  timeOn?: Date
+  timeOff?: Date
+}
+const SubscribeStatus = memo(function SubscribeStatus(props: SubscribeStatusProps) {
+  const t = useMemo(() => getT(json), [])
+
+  const { status, timeOffCountdown } = useSubscribeStatus(props.timeOn, props.timeOff)
+
+  const statusTxt =
+    status === 'completed'
+      ? t('status3')
+      : status === 'ongoing'
+      ? timeOffCountdown
+      : t('status1')
+
+  const content = useMemo(() => {
+    switch (status) {
+      case 'pending':
+      case 'upcoming':
+        return (
+          <div>
+            <Label
+              label={<ColorSpan>{t('label1')}</ColorSpan>}
+              value={<span className="text-sm font-semibold">{t('upcoming')}</span>}
+            />
+          </div>
+        )
+      case 'ongoing':
+        return <div>timeOffCountdown</div>
+      case 'completed':
+        return <div>com</div>
+    }
+  }, [status, t])
+
+  return (
+    <div className="text-center">
+      <h6 className="text-xs opacity-80">{t('countdown')}</h6>
+      <span className="text-lg font-semibold opacity-80 md:text-3xl">{statusTxt}</span>
+
+      <div>{content}</div>
+    </div>
+  )
+})
+
+const ColorSpan = memo(function ColorSpan({
+  children,
+  ...props
+}: React.ComponentProps<'span'>) {
+  return (
+    <span
+      {...props}
+      className={clsx(
+        'bg-gradient-to-r from-c1 to-[#FB2EFF]',
+        'bg-clip-text font-semibold text-transparent',
+        'text-base md:text-xl',
+      )}
+    >
+      {children}
+    </span>
   )
 })
 export default Subscribe

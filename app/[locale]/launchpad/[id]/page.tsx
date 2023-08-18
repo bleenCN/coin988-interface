@@ -34,6 +34,9 @@ interface Project {
   level?: string
   currentNum?: number
   targetNum?: number
+
+  timeOn?: Date
+  timeOff?: Date
 }
 
 export default function Page({ params }: { params: PageParams }) {
@@ -63,6 +66,9 @@ export default function Page({ params }: { params: PageParams }) {
     level: 'A',
     currentNum: 0,
     targetNum: 1000000,
+
+    timeOn: new Date('2023-10-1'),
+    timeOff: new Date('2023-11-2'),
   }
 
   return (
