@@ -1,13 +1,13 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useLayoutEffect, useState } from 'react'
 
 import { isBeforeTime } from '@/lib/utils'
 
 import { useCountdown } from './useCountdown'
 
-export type Staus = 'pending' | 'upcoming' | 'ongoing' | 'completed'
+export type Staus = 'pending' | 'upcoming' | 'ongoing' | 'completed' | 'loading'
 
 export const useSubscribeStatus = (timeOn?: Date, timeOff?: Date) => {
-  const [status, setStatus] = useState<Staus>('pending')
+  const [status, setStatus] = useState<Staus>('loading')
 
   const updateStatus = useCallback(() => {
     if (!timeOn || !timeOff) return setStatus('pending')
@@ -16,7 +16,7 @@ export const useSubscribeStatus = (timeOn?: Date, timeOff?: Date) => {
     if (timeOff && !isBeforeTime(timeOff)) return setStatus('completed')
   }, [timeOff, timeOn])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     updateStatus()
     const timer = setInterval(updateStatus, 1000)
     return () => {

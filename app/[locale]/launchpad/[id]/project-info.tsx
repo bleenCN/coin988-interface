@@ -36,7 +36,7 @@ interface ProjectInfoProps {
 const ProjectInfo = memo(function ProjectInfo(props: ProjectInfoProps) {
   const t = getT(json)
   return (
-    <div className="relative mt-12 rounded-xl border border-c4 p-4 md:p-6">
+    <div className="relative mt-12 rounded-xl border border-c4 p-4 dark:border-c2 md:p-6">
       <h1 className="absolute -top-12 left-0 text-xl font-semibold md:text-2xl">
         {t('title')}
       </h1>
@@ -52,7 +52,7 @@ const ProjectInfo = memo(function ProjectInfo(props: ProjectInfoProps) {
       </div>
 
       <h2 className="mt-8 text-lg font-semibold md:text-xl">{t('subtitle2')}</h2>
-      <div className="mt-3 grid grid-cols-1 gap-3">
+      <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-2">
         <Label label={t('totalCoin')} value={props.totalCoin} />
         <Label label={t('minLimit')} value={props.minLimit} />
         <Label label={t('maxLimit')} value={props.maxLimit} />

@@ -1,5 +1,7 @@
 'use client'
+import Article from './article'
 import ProjectInfo from './project-info'
+import RoundInfo from './round-info'
 import Subscribe from './subscribe'
 import Top from './top'
 
@@ -67,7 +69,7 @@ export default function Page({ params }: { params: PageParams }) {
     currentNum: 0,
     targetNum: 1000000,
 
-    timeOn: new Date('2023-8-1'),
+    timeOn: new Date('2023-10-1'),
     timeOff: new Date('2023-11-2'),
   }
 
@@ -102,19 +104,33 @@ export default function Page({ params }: { params: PageParams }) {
         />
 
         <div className="pt-10">
-          <Subscribe
-            target={p.target}
-            supply={p.supply}
-            price={p.price}
-            originMarketValue={p.originMarketValue}
-            level={p.level}
-            currentNum={p.currentNum}
-            targetNum={p.targetNum}
-            timeOn={p.timeOn}
-            timeOff={p.timeOff}
-            maxLimit={p.maxLimit}
-          />
+          <div>
+            <Subscribe
+              target={p.target}
+              supply={p.supply}
+              price={p.price}
+              originMarketValue={p.originMarketValue}
+              level={p.level}
+              currentNum={p.currentNum}
+              targetNum={p.targetNum}
+              timeOn={p.timeOn}
+              timeOff={p.timeOff}
+              maxLimit={p.maxLimit}
+            />
+          </div>
+
+          <div className="mt-6 lg:mt-10">
+            <RoundInfo />
+          </div>
+
+          <div className="mt-6 lg:mt-10">
+            <Article />
+          </div>
         </div>
+      </div>
+
+      <div className="container mt-20">
+        <div className="line h-px bg-black/10 dark:bg-white/20" />
       </div>
     </div>
   )

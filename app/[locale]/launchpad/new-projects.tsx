@@ -23,6 +23,7 @@ const json = {
   statusUpcoming: '即将开启',
   statusOngoing: '进行中',
   statusCompleted: '已售罄',
+  statusLoading: '加载中',
 }
 
 const mockCards: CardProps[] = [
@@ -348,6 +349,8 @@ const FinancingStatus = memo(function FinancingState(props: FinancingStatusProps
 
   const content = useMemo(() => {
     switch (status) {
+      case 'loading':
+        return <div>{t('statusLoading')}</div>
       case 'pending':
         return (
           <span className="text-sm font-semibold text-[#7F43FF]">
@@ -374,6 +377,8 @@ const FinancingStatus = memo(function FinancingState(props: FinancingStatusProps
         )
     }
   }, [status, t, timeOffCountdown, timeOnCountdown])
+
+  console.log(status)
 
   return (
     <div className="grid h-10 w-48 place-items-center rounded-lg border border-c4">

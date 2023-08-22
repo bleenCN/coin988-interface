@@ -15,6 +15,7 @@ const json = {
   NumInputPlacehodler: '请输入数量',
   confirm: '确认',
   countdown: '倒计时',
+  status0: '加载中',
   status1: '未开启',
   status3: '已售罄',
   label1: 'Coin988 Vip轮次',
@@ -53,11 +54,11 @@ interface SubscribeProps {
 const Subscribe = memo(function Subscribe(props: SubscribeProps) {
   const t = getT(json)
   return (
-    <div className="rounded-xl border border-c4 p-4">
+    <div className="rounded-xl border border-c4 p-4 dark:border-c2">
       <h2 className="text-xl font-semibold">{t('title')}</h2>
 
       <div className="mt-4 lg:flex">
-        <div className="flex flex-col gap-4 rounded-lg bg-c1/5 p-4 lg:flex-1">
+        <div className="flex flex-col justify-between gap-4 rounded-lg bg-c1/5 p-4 lg:flex-1">
           <Label label={t('target')} value={props.target} />
           <Label label={t('supply')} value={props.supply} />
           <Label label={t('price')} value={props.price} />
@@ -66,7 +67,7 @@ const Subscribe = memo(function Subscribe(props: SubscribeProps) {
           <Slide currentNum={props.currentNum} targetNum={props.targetNum} />
         </div>
 
-        <div className="line h-px bg-c4 lg:mx-4 lg:h-auto lg:w-px" />
+        <div className="line my-8 h-px bg-c4 lg:mx-4 lg:my-0 lg:h-auto lg:w-px" />
 
         <div className="lg:flex-1">
           <SubscribeStatus
@@ -149,7 +150,9 @@ const SubscribeStatus = memo(function SubscribeStatus(props: SubscribeStatusProp
   }
 
   const statusTxt =
-    status === 'completed' ? (
+    status === 'loading' ? (
+      t('status0')
+    ) : status === 'completed' ? (
       <span className="text-lg font-semibold opacity-50 md:text-3xl">{t('status3')}</span>
     ) : status === 'ongoing' ? (
       <span className="text-lg font-semibold text-c1">{timeOffCountdown}</span>
@@ -159,10 +162,12 @@ const SubscribeStatus = memo(function SubscribeStatus(props: SubscribeStatusProp
 
   const content = useMemo(() => {
     switch (status) {
+      case 'loading':
+        return <span></span>
       case 'pending':
       case 'upcoming':
         return (
-          <div className="flex flex-col gap-3 text-sm font-semibold">
+          <div className="mt-4 flex flex-col justify-between gap-3 text-sm font-semibold">
             <div className="rounded-lg bg-c1/5 p-3 md:p-4">
               <Label
                 label={<ColorSpan>{t('label1')}</ColorSpan>}
@@ -185,7 +190,7 @@ const SubscribeStatus = memo(function SubscribeStatus(props: SubscribeStatusProp
         )
       case 'ongoing':
         return (
-          <div>
+          <>
             <div className="flex justify-between text-sm font-semibold">
               <span>
                 <span>{t('level')}</span>{' '}
@@ -221,11 +226,11 @@ const SubscribeStatus = memo(function SubscribeStatus(props: SubscribeStatusProp
                 {t('confirm')}
               </button>
             </div>
-          </div>
+          </>
         )
       case 'completed':
         return (
-          <div>
+          <>
             <h4 className="text-sm font-semibold">
               {t('claimLabel', { symbol: 'COB' })}
             </h4>
@@ -239,17 +244,17 @@ const SubscribeStatus = memo(function SubscribeStatus(props: SubscribeStatusProp
                 {t('claim')}
               </button>
             </div>
-          </div>
+          </>
         )
     }
   }, [numOfToken, props.level, props.maxLimit, status, t])
 
   return (
-    <div className="text-center">
+    <div className="flex h-full flex-col justify-between text-center">
       <h6 className="text-xs opacity-50">{t('countdown')}</h6>
       <h2 className="mt-2">{statusTxt}</h2>
 
-      <div className="mt-4 md:mt-6">{content}</div>
+      {content}
     </div>
   )
 })
