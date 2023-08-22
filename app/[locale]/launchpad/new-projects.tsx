@@ -2,6 +2,7 @@
 
 import clsx from 'clsx'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { memo, ReactNode, useCallback, useMemo, useState } from 'react'
 
 import withLink from '@/components/hocs/with-link'
@@ -186,8 +187,15 @@ interface CardProps {
 }
 
 const Card = memo(function Card(props: CardProps) {
+  const router = useRouter()
   return (
-    <div className="overflow-hidden rounded-xl shadow-md">
+    <div
+      className={clsx(
+        'cursor-pointer overflow-hidden rounded-xl shadow-md',
+        'transition-all hover:-translate-y-0.5 hover:shadow-lg',
+      )}
+      onClick={() => router.push('/launchpad/123')}
+    >
       <Image
         src={props.imgSrc ?? ''}
         alt={''}

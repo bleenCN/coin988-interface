@@ -89,21 +89,23 @@ export default function Page({ params }: { params: PageParams }) {
         />
       </div>
 
-      <div className="container pt-20 xl:pt-4">
-        <ProjectInfo
-          tokenName={p.name}
-          supportNet={p.supportNet}
-          totalSupply={p.totalSupply}
-          tokenFlow={p.tokenFlow}
-          originPrice={p.originPrice}
-          marketValue={p.marketValue}
-          totalCoin={p.totalCoin}
-          minLimit={p.minLimit}
-          maxLimit={p.maxLimit}
-          expectedNumOfPeople={p.expectedNumOfPeople}
-        />
+      <div className="container pt-20 xl:flex xl:gap-8 xl:pt-4">
+        <div className="xl:min-w-[300px] 2xl:min-w-[438px]">
+          <ProjectInfo
+            tokenName={p.name}
+            supportNet={p.supportNet}
+            totalSupply={p.totalSupply}
+            tokenFlow={p.tokenFlow}
+            originPrice={p.originPrice}
+            marketValue={p.marketValue}
+            totalCoin={p.totalCoin}
+            minLimit={p.minLimit}
+            maxLimit={p.maxLimit}
+            expectedNumOfPeople={p.expectedNumOfPeople}
+          />
+        </div>
 
-        <div className="pt-10">
+        <div className="pt-12">
           <div>
             <Subscribe
               target={p.target}
