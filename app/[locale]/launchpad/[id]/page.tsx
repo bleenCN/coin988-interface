@@ -42,6 +42,8 @@ interface Project {
 }
 
 export default function Page({ params }: { params: PageParams }) {
+  console.log(params.id)
+
   const p: Project = {
     name: 'COB',
     imgUrl: '/images/token-cob-symbol.png',
@@ -75,8 +77,6 @@ export default function Page({ params }: { params: PageParams }) {
 
   return (
     <div>
-      {params.id}
-
       <div className="container">
         <Top
           imgUrl={p.imgUrl}
