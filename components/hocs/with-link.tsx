@@ -7,15 +7,10 @@ interface WithLinkProps {
 function withLink<T>(Component: React.ComponentType<T>) {
   const withLinkHOC = memo(
     forwardRef<React.ComponentType<T>, T & WithLinkProps>(function FC(props, ref) {
+      const { href, ...withoutFcous } = props
       return (
-        <a
-          href={props.href}
-          tabIndex={-1}
-          aria-label="test"
-          onClick={(e) => e.stopPropagation()}
-          target="_blank"
-        >
-          <Component {...props} ref={ref} />
+        <a href={href} aria-label="test" target="_blank">
+          <Component {...(withoutFcous as T)} ref={ref} />
         </a>
       )
     }),
