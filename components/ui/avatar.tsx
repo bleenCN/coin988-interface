@@ -22,7 +22,9 @@ const Avatar = memo(function Avatar(props: AvatarProps) {
       onError={() => setLoadImgError(true)}
     />
   ) : (
-    <div {...props}>{props.name[0]}</div>
+    <div {...props} className="text-2xl">
+      {props.name[0]}
+    </div>
   )
 })
 

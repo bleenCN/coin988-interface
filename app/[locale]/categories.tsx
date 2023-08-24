@@ -1,7 +1,6 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
 import clsx from 'clsx'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { memo, useCallback, useState } from 'react'
 
@@ -299,17 +298,17 @@ const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project 
       )}
       onClick={boardClickHandler}
     >
-      <Image
+      {/* <Image
         src={project.logo || ''}
         alt={project.name}
         width={50}
         height={50}
         className="h-10 w-10 overflow-hidden rounded-xl lg:h-12 lg:w-12"
-      />
+      /> */}
 
       <Avatar
         src={project.logo || ''}
-        alt={project.name}
+        name={project.name}
         width={50}
         height={50}
         className="h-10 w-10 overflow-hidden rounded-xl lg:h-12 lg:w-12"
