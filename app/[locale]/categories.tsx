@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { memo, useCallback, useState } from 'react'
 
 import withLink from '@/components/hocs/with-link'
+import Avatar from '@/components/ui/avatar'
 import {
   ArrowIcon,
   DiscordIcon,
@@ -299,6 +300,14 @@ const ProjectBoard = memo(function ProjectBoard({ project }: { project: Project 
       onClick={boardClickHandler}
     >
       <Image
+        src={project.logo || ''}
+        alt={project.name}
+        width={50}
+        height={50}
+        className="h-10 w-10 overflow-hidden rounded-xl lg:h-12 lg:w-12"
+      />
+
+      <Avatar
         src={project.logo || ''}
         alt={project.name}
         width={50}

@@ -1,13 +1,28 @@
-import Image from 'next/image'
+import Image, { ImageProps } from 'next/image'
 import { memo, useState } from 'react'
 
-const Avatar = memo(function Avatar(props: React.ComponentProps<typeof Image>) {
+type AvatarProps = React.ComponentProps<'div'> & {
+  src: ImageProps['src']
+  name: string
+  width: ImageProps['width']
+  height: ImageProps['height']
+}
+
+const Avatar = memo(function Avatar(props: AvatarProps) {
   const [loadImgError, setLoadImgError] = useState(false)
 
   return !loadImgError ? (
-    <Image {...props} alt={props.alt} onError={() => setLoadImgError(true)} />
+    <Image
+      src={props.src}
+      alt={props.name}
+      width={props.width}
+      height={props.height}
+      className={props.className}
+      style={props.style}
+      onError={() => setLoadImgError(true)}
+    />
   ) : (
-    <div className={props.className}>{props.alt.substring(0, 1)}</div>
+    <div {...props}>{props.name[0]}</div>
   )
 })
 
