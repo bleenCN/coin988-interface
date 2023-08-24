@@ -3,6 +3,7 @@ import { loadCategories } from '@/lib/services'
 
 import { ApolloProvider } from './apollo-provider'
 import { ApplyForm } from './apply-form'
+import TestComponent from './component-test'
 
 export default async function Page() {
   const categories = await loadCategories()
@@ -11,6 +12,7 @@ export default async function Page() {
   return (
     <ApolloProvider>
       <ApplyForm categoryOptions={categoryOptions} />
+      <TestComponent />
     </ApolloProvider>
   )
 }

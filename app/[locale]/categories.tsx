@@ -264,6 +264,10 @@ const CategoryTitle = memo(function Category(props: CategoryTitleProps) {
             props.isFloded ? 'rotate-90' : 'rotate-[270deg]',
           )}
           tabIndex={0}
+          onKeyDown={(e) => {
+            console.log(e)
+            if (e.key === 'Enter') props.changeFlodState()
+          }}
         />
       ) : (
         <div onClick={props.onMoreBtnClick}>

@@ -4,6 +4,13 @@
 
 @layer base {
   :root {
+    --c1: #2e60ff;
+    --c1-10: #2e5fff10;
+    --c2: #292a2d;
+    --c3: #9ea1ac;
+    --c4: #dee1ea;
+    --c5: #10b23d;
+    --c6: #f13636;
     --background: 0 0% 100%;
     --foreground: 226 4% 17%;
 

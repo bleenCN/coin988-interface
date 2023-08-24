@@ -54,9 +54,9 @@ const Top = memo(function Top(props: TopProps) {
         <h1 className="mt-8 text-2xl font-semibold">{props.name}</h1>
 
         <span className="mt-4 flex justify-center gap-4 text-2xl">
-          {props.website && <WebsiteIconWithLink tabIndex={0} href="1" />}
-          {props.twitter && <TwitterIconWithLink tabIndex={0} href="1" />}
-          {props.discord && <DiscordIconWithLink tabIndex={0} href="1" />}
+          {props.website && <WebsiteIconWithLink href="1" />}
+          {props.twitter && <TwitterIconWithLink href="1" />}
+          {props.discord && <DiscordIconWithLink href="1" />}
         </span>
 
         <p className="mx-auto mt-6 max-w-2xl opacity-90">{props.synopsis}</p>
