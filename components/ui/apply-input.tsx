@@ -7,7 +7,7 @@ const ApplyInput = memo(function ApplyInput(props: ApplyInputProps) {
     <input
       type="text"
       className={clsx(
-        'w-full rounded-lg border border-c4 p-5 text-sm font-semibold text-c3',
+        'w-full rounded-lg border border-c4 p-5 text-sm font-semibold placeholder:text-c3',
         'dark:border-c3',
       )}
       placeholder={props.placeholder}

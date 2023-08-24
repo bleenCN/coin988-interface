@@ -8,12 +8,6 @@ interface Option<ValueType = any> {
   label: string
   value: ValueType
 }
-const options: Option[] = [
-  { label: 'test1', value: 1 },
-  { label: 'test2', value: 2 },
-  { label: 'test3', value: 3 },
-  { label: 'test4', value: 4 },
-]
 
 type ApplySelectProps<ValueType> =
   | {
@@ -70,7 +64,7 @@ const ApplySelect = memo(function ApplySelect<ValueType>(
       onFocus={props.onFocus}
       onBlur={props.onBlur}
     >
-      {options.map((option, index) => (
+      {props.options.map((option, index) => (
         <Option key={index} value={option.value} title={option.label}>
           {option.label}
         </Option>

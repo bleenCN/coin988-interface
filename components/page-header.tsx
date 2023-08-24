@@ -61,7 +61,7 @@ export default function PageHeader({ locale }: { locale: string }) {
                 </ExternalLink>
               </Button>
               <Button className="min-w-[80px] rounded-full" asChild>
-                <Link href="/apply">{t('apply')}</Link>
+                <Link href="/apply/project">{t('apply')}</Link>
               </Button>
             </div>
             <ThemeToggle />
