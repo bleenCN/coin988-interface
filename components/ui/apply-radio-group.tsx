@@ -1,6 +1,8 @@
 'use client'
 import React, { memo } from 'react'
 
+import { BlueTickIcon } from './icons.b'
+
 type ValueType = string | number | boolean
 interface OptionType<T extends ValueType> {
   label: string
@@ -51,10 +53,12 @@ const Radio = memo(function Radio<T extends string | number | boolean>({
       className="flex cursor-pointer select-none items-center gap-2"
       onClick={onClick}
     >
-      <span className="block h-5 w-5 rounded-full border-2 border-c4">
-        {active && '*'}
-      </span>
-      <span>{option.value}</span>
+      {active ? (
+        <BlueTickIcon className="text-xl" />
+      ) : (
+        <span className="block h-5 w-5 rounded-full border-2 border-c4" />
+      )}
+      <span className="text-sm font-semibold">{String(option.value)}</span>
     </div>
   )
 })

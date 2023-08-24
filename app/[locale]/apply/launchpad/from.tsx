@@ -1,6 +1,7 @@
 'use client'
+import clsx from 'clsx'
 import Image from 'next/image'
-import { memo, ReactNode } from 'react'
+import { memo, ReactNode, useState } from 'react'
 import { useImmer } from 'use-immer'
 
 import ApplyImage from '@/components/ui/apply-image'
@@ -175,6 +176,11 @@ const From = memo(function From() {
             ]}
           />
         </div>
+
+        <div>
+          <Label>{t('address')}</Label>
+          <ApplyInput placeholder={t('inputPlaceholder', { name: '' })} />
+        </div>
       </InputGroup>
     </>
   )
@@ -184,24 +190,44 @@ export default From
 
 interface InputGroupProps {
   title?: string
+  expend?: boolean
   children?: ReactNode
 }
 
 const InputGroup = memo(function InputGroup(props: InputGroupProps) {
+  const [expend, setExpend] = useState(props.expend ?? false)
   return (
     <div className="mt-12 max-w-[600px]">
       <h2 className="flex items-center gap-3 border-b pb-4">
         <span className="block h-6 w-1.5 bg-c1" />
         <span className="block flex-1 font-semibold">{props.title}</span>
         <span className="block px-2">
-          <ArrowIcon className="rotate-90 scale-150" />
+          <ArrowIcon
+            tabIndex={0}
+            onClick={() => setExpend(!expend)}
+            className={clsx(
+              'scale-150 transition-all',
+              expend ? 'rotate-90' : 'rotate-[270deg]',
+            )}
+          />
         </span>
       </h2>
-      <div>{props.children}</div>
+      <div
+        className={clsx(
+          'grid overflow-hidden transition-all',
+          expend ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
+        )}
+      >
+        <div className="min-h-0">{props.children}</div>
+      </div>
     </div>
   )
 })
 
 const Label = memo(function Label({ children }: { children: ReactNode }) {
-  return <span className="mb-3 mt-6 block pl-1 text-sm font-semibold">{children}</span>
+  return (
+    <span className="mb-3 mt-6 block select-none pl-1 text-sm font-semibold">
+      {children}
+    </span>
+  )
 })
