@@ -3,8 +3,8 @@ import React, { memo } from 'react'
 
 import { BlueTickIcon } from './icons.b'
 
-type ValueType = string | number | boolean
-interface OptionType<T extends ValueType> {
+export type ValueType = string | number | boolean
+export interface OptionType<T extends ValueType> {
   label: string
   value: T
 }
@@ -12,7 +12,7 @@ interface ApplyRadioGroupProps<T extends ValueType> {
   name: string
   id?: string
   options: OptionType<T>[]
-  onChange?: (value: ValueType) => void
+  onChange?: (value: T) => void
   value?: T
 }
 
@@ -20,7 +20,7 @@ const ApplyRadioGroup = memo(function ApplyRadioGroup<T extends ValueType>(
   props: ApplyRadioGroupProps<T>,
 ) {
   return (
-    <div className="flex gap-10">
+    <div className="mb-3 mt-6 flex gap-10">
       {props.options.map((option, index) => {
         return (
           <Radio
@@ -33,7 +33,7 @@ const ApplyRadioGroup = memo(function ApplyRadioGroup<T extends ValueType>(
       })}
     </div>
   )
-})
+}) as <T extends ValueType>(props: ApplyRadioGroupProps<T>) => JSX.Element
 
 export default ApplyRadioGroup
 
@@ -58,7 +58,7 @@ const Radio = memo(function Radio<T extends string | number | boolean>({
       ) : (
         <span className="block h-5 w-5 rounded-full border-2 border-c4" />
       )}
-      <span className="text-sm font-semibold">{String(option.value)}</span>
+      <span className="text-sm font-semibold">{option.label}</span>
     </div>
   )
 })
